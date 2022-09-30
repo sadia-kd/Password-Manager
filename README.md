@@ -1,6 +1,6 @@
 # CPSC 210 Personal Project:
 
-## _Password Manager_
+## ***Password Manager***
 
 ### **What will the application do?**
 For my CPSC 210 project, I want to create an application that will allow a user to save multiple passwords for the 
