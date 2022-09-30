@@ -15,7 +15,7 @@ username and password.
 This Password Managing application can be used by anyone. If an individual has too many passwords to keep track of, 
 they can store them in this application. It can be useful to many ages as sometimes it can get difficult remembering 
 your username and password for a new account you create for an application, or even when trying to remember a password 
-of an account you made 10+ years. In cases like that, an application like this can come to your service.
+of an account you made 10+ years ago. In cases like that, an application like this can come to your service.
 
 ### **Why is this project of interest to you?**
 This idea of creating an application that will help someone keep track of their passwords and usernames/emails is 
