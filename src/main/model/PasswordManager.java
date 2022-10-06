@@ -4,40 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// PasswordManager represents the passwords that will be saved
+// PasswordManager represents the accounts that will be saved
 public class PasswordManager {
-    private final List<Password> passwords;
+    private final List<Account> accounts;
 
     // TODO
     //REQUIRES:
     //MODIFIES:
-    //EFFECTS: constructs an empty Array List that will hold all the passwords
+    //EFFECTS: constructs an empty Array List that will hold all the passwords/usernames/app names of accounts
     public PasswordManager() {
-        passwords = new ArrayList<>();
+        accounts = new ArrayList<>();
     }
 
     // TODO
     //REQUIRES:
     //MODIFIES:
     //EFFECTS:
-    public void addPassword(Password password) {
-        passwords.add(password);
+    public void addAccount(Account account) {
+        accounts.add(account);
     }
 
     // TODO
     //REQUIRES:
     //MODIFIES:
     //EFFECTS:
-    public void removePassword(Password password) {
-        passwords.remove(password);
+    public boolean removeAccount(String app) {
+        for (Account a: accounts) {
+            if (a.getApplicationName() == app) {
+                accounts.remove(a);
+                return true;
+            }
+        }
+        return false;
     }
+
 
     // TODO
     //REQUIRES:
     //MODIFIES:
     //EFFECTS:
-    public int countPasswords() {
-        return passwords.size();
+    public int count() {
+        return accounts.size();
     }
 
 
