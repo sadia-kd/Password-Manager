@@ -33,11 +33,15 @@ public class Account {
         return pass;
     }
 
-//// ask if allowed to keep this in here
-//    public void accountDetails() {
-//        System.out.println("Application: " + getApplicationName() + "\n"
-//                + "Username: " + getUsername() + "\n"
-//                + "Password: " + getPassword());
-//    }
+
+    // TODO
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    public void changePassword(String app, String newPass) {
+        if (app == application) {
+            this.pass = newPass;
+        }
+    }
 
 }
