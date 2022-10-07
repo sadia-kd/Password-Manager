@@ -88,7 +88,7 @@ public class PasswordManagerApp {
         System.out.println("Enter the password: ");
         String p = input.next();
         manager.addAccount(account);
-        System.out.println("Congrats, this account has been saved to your Password Manager!!!");
+        System.out.println("\nCongrats, this account has been saved to your Password Manager!!!");
     }
 
     // TODO
@@ -101,11 +101,12 @@ public class PasswordManagerApp {
         } else {
             System.out.println("What is the name of the application this password is for? ");
             String app = input.next();
-            manager.removeAccount(null);
+            //manager.removeAccount(null);
             if (manager.removeAccount(null)) {
                 System.out.println("This account has been removed!");
+            } else {
+                System.out.println("This account does not exist!");
             }
-            System.out.println("This account does not exist!");
         }
     }
 
