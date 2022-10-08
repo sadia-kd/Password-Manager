@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 // PasswordManager represents the accounts that will be saved
@@ -30,7 +31,7 @@ public class PasswordManager {
     //EFFECTS:
     public boolean removeAccount(String app) {
         for (Account a: accounts) {
-            if (a.getApplicationName() == app) {
+            if (Objects.equals(a.getApplicationName(), app)) {
                 accounts.remove(a);
                 return true;
             }
@@ -47,7 +48,13 @@ public class PasswordManager {
         return accounts.size();
     }
 
+    public Account getAccount(int i) {
+        return accounts.get(i);
+    }
 
+//    public list<Account> returnAccounts() {
+//        return accounts;
+//    }
 
 //    public void printAppNames() {
 //        List<Password> appList = password.get();
