@@ -10,7 +10,7 @@ public class Account {
     //TODO
     //REQUIRES: nothing
     //MODIFIES: nothing
-    //EFFECTS: creates a single account with given password, corresponding username, and the application name
+    //EFFECTS: creates a single account with given password, given username, and the application name
     public Account(String app, String u,  String p) {
         this.application = app;
         this.user = u;
@@ -18,30 +18,31 @@ public class Account {
 
     }
 
-    // TODO
-    // getters for password, username, and application name
-
+    //EFFECTS: returns the application name of the account saved
     public String getApplicationName() {
         return application;
     }
 
+    //EFFECTS: returns the Username of the account saved
     public String getUsername() {
         return user;
     }
 
+    //EFFECTS: returns the Password of the account saved
     public String getPassword() {
         return pass;
     }
 
 
-    // TODO
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public void changePassword(String app, String newPass) {
-        if (app == application) {
-            this.pass = newPass;
-        }
-    }
+//    // TODO
+//    // REQUIRES:
+//    // MODIFIES:
+//    // EFFECTS:
+//    public void changePassword(String app, String newPass) {
+//        if (app == application) {
+//            this.pass = newPass;
+//        }
+//    }
+
 
 }

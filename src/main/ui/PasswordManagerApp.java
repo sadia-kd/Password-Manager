@@ -87,8 +87,13 @@ public class PasswordManagerApp {
         System.out.println("Enter the password: ");
         String p = input.next();
         account = new Account(app, u, p);
-        manager.addAccount(account);
-        System.out.println("\nCongrats, this account has been saved to your Password Manager!!!");
+        //manager.checkAccountAlreadyThere(account);
+        if (manager.checkAccountAlreadyThere(account)) {
+            System.out.println("An account like this already exists in this Password Manager!");
+        } else {
+            manager.addAccount(account);
+            System.out.println("\nThis account has been saved to your Password Manager!!!");
+        }
     }
 
     // TODO
@@ -114,11 +119,15 @@ public class PasswordManagerApp {
     // MODIFIES
     // EFFECTS
     private void viewAccounts() {
-        for (int i = 0; i < manager.count(); i++) {
-            Account a = manager.getAccount(i);
-            System.out.println("Application: " + a.getApplicationName() + "\n"
-                    + "Username: " + a.getUsername() + "\n"
-                    + "Password: " + a.getPassword());
+        if (manager.count() == 0) {
+            System.out.println("There are no accounts to view!");
+        } else {
+            for (int i = 0; i < manager.count(); i++) {
+                Account a = manager.getAccount(i);
+                System.out.println("\n" + "Application: " + a.getApplicationName() + "\n"
+                        + "Username: " + a.getUsername() + "\n"
+                        + "Password: " + a.getPassword() + "\n");
+            }
         }
     }
 

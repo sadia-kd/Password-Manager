@@ -39,33 +39,32 @@ public class PasswordManager {
         return false;
     }
 
+    // TODO
+    //REQUIRES:
+    //MODIFIES:
+    //EFFECTS: returns the count of accounts saved
+    public int count() {
+        return accounts.size();
+    }
 
     // TODO
     //REQUIRES:
     //MODIFIES:
     //EFFECTS:
-    public int count() {
-        return accounts.size();
+    public boolean checkAccountAlreadyThere(Account a) {
+        if (accounts.contains(a)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    // TODO
+    //REQUIRES:
+    //MODIFIES:
+    //EFFECTS:
     public Account getAccount(int i) {
         return accounts.get(i);
     }
-
-//    public list<Account> returnAccounts() {
-//        return accounts;
-//    }
-
-//    public void printAppNames() {
-//        List<Password> appList = password.get();
-//    }
-
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    //public void changePassword(String p) {
-    //    if
-    //}
-
 
 }
