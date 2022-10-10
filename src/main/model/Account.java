@@ -34,15 +34,5 @@ public class Account {
     }
 
 
-//    // TODO
-//    // REQUIRES:
-//    // MODIFIES:
-//    // EFFECTS:
-//    public void changePassword(String app, String newPass) {
-//        if (app == application) {
-//            this.pass = newPass;
-//        }
-//    }
-
 
 }

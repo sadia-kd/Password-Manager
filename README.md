@@ -24,7 +24,7 @@ project, I want to create something that can be useful to many individuals which
 ideas that came to my mind. 
 
 ## ***USER STORIES***
-- As a user, I want to be able to add an account to my Password Manager with its account, user/email.
+- As a user, I want to be able to add an account to my Password Manager with its password, user.
 - As a user, I want to be able to add the name of the application of what the pass/user belongs to
 - As a user, I want to be able to view a list of the applications' names saved in my Password Manager
 - As a user, I want to be able to view the exact details of a chosen account by the application 
@@ -33,3 +33,9 @@ name such as the account and username saved
 - As a user, I want to be able to change an account's account/username saved
 - As a user, I want to be able to see the total number of passwords saved 
 
+### Done for Phase1:
+- As a user, I want to be able to add an account to my Password Manager with its password, user.
+- As a user, I want to be able to add the name of the application of what the pass/user belongs to
+- As a user, I want to be able to view all the accounts saved in my Password Manager
+- As a user, I want to be able to remove an account saved
+- As a user, I want to be able to see the total number of accounts saved 

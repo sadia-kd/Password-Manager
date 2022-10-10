@@ -19,15 +19,21 @@ public class PasswordManager {
 
     // TODO
     //REQUIRES:
-    //MODIFIES:
+    //MODIFIES: this
     //EFFECTS:
-    public void addAccount(Account account) {
-        accounts.add(account);
+    public boolean addAccount(Account account) {
+        if (accounts.contains(account)) {
+            return false;
+        } else {
+            accounts.add(account);
+            return true;
+        }
     }
 
     // TODO
+    // followed format from Hockey project
     //REQUIRES:
-    //MODIFIES:
+    //MODIFIES: this
     //EFFECTS:
     public boolean removeAccount(String app) {
         for (Account a: accounts) {
@@ -39,6 +45,7 @@ public class PasswordManager {
         return false;
     }
 
+    // getter
     // TODO
     //REQUIRES:
     //MODIFIES:
@@ -47,17 +54,17 @@ public class PasswordManager {
         return accounts.size();
     }
 
-    // TODO
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
-    public boolean checkAccountAlreadyThere(Account a) {
-        if (accounts.contains(a)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    // TODO
+//    //REQUIRES:
+//    //MODIFIES:
+//    //EFFECTS:
+//    public boolean checkAccountAlreadyThere(Account a) {
+//        if (accounts.contains(a.getApplicationName())) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     // TODO
     //REQUIRES:

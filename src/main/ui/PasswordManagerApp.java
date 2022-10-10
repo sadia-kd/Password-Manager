@@ -20,6 +20,7 @@ public class PasswordManagerApp {
     }
 
     // TODO
+    // followed format of TellerApp project
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
@@ -58,9 +59,10 @@ public class PasswordManagerApp {
     }
 
     // TODO
+    // followed format of TellerApp
     // REQUIRES
     // MODIFIES
-    // EFFECTS
+    // EFFECTS:
     private void doNextOptions(String command) {
         if (command.equals("add")) {
             addPassword();
@@ -88,11 +90,10 @@ public class PasswordManagerApp {
         String p = input.next();
         account = new Account(app, u, p);
         //manager.checkAccountAlreadyThere(account);
-        if (manager.checkAccountAlreadyThere(account)) {
-            System.out.println("An account like this already exists in this Password Manager!");
-        } else {
-            manager.addAccount(account);
+        if (manager.addAccount(account)) {
             System.out.println("\nThis account has been saved to your Password Manager!!!");
+        } else {
+            System.out.println("An account like this already exists in this Password Manager!");
         }
     }
 

@@ -3,9 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for PasswordManager class
 public class PasswordManagerTest {
     private PasswordManager passwordManagerEmpty;
     private Account account1;
@@ -33,6 +33,7 @@ public class PasswordManagerTest {
     public void testAddAccount() {
         passwordManagerEmpty.addAccount(account1);
         assertEquals(1, passwordManagerEmpty.count());
+        assertEquals(account1, passwordManagerEmpty.getAccount(0));
     }
 
     @Test
@@ -44,14 +45,17 @@ public class PasswordManagerTest {
         assertEquals(2, passwordManagerEmpty.count());
         passwordManagerEmpty.addAccount(account3);
         assertEquals(3, passwordManagerEmpty.count());
+        assertEquals(account1, passwordManagerEmpty.getAccount(0));
+        assertEquals(account2, passwordManagerEmpty.getAccount(1));
+        assertEquals(account3, passwordManagerEmpty.getAccount(2));
     }
 
     @Test
     public void testAddAccountThere() {
-        passwordManagerEmpty.addAccount(account1);
+        assertTrue(passwordManagerEmpty.addAccount(account1));
         assertEquals(1, passwordManagerEmpty.count());
         passwordManagerEmpty.addAccount(account1);
-        assertTrue(passwordManagerEmpty.checkAccountAlreadyThere(account1));
+        //assertTrue(passwordManagerEmpty.checkAccountAlreadyThere(account1));
         assertEquals(1, passwordManagerEmpty.count());
     }
 
@@ -85,5 +89,6 @@ public class PasswordManagerTest {
         passwordManagerFull.removeAccount("twitter");
         assertEquals(2, passwordManagerFull.count());
     }
+
 
 }
