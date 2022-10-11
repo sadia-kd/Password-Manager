@@ -89,11 +89,11 @@ public class PasswordManagerApp {
         System.out.println("Enter the password: ");
         String p = input.next();
         account = new Account(app, u, p);
-        //manager.checkAccountAlreadyThere(account);
-        if (manager.addAccount(account)) {
-            System.out.println("\nThis account has been saved to your Password Manager!!!");
-        } else {
+        if (manager.containsAccount(app, u)) {
             System.out.println("An account like this already exists in this Password Manager!");
+        } else {
+            manager.addAccount(account);
+            System.out.println("\nThis account has been saved to your Password Manager!!!");
         }
     }
 
@@ -102,15 +102,17 @@ public class PasswordManagerApp {
     // MODIFIES
     // EFFECTS
     private void removePassword() {
-        if (manager.count() == 0) {
+        if (manager.getCount() == 0) {
             System.out.println("You do not have any passwords saved ... ");
         } else {
             System.out.println("What is the name of the application this password is for? ");
             String app = input.next();
-            if (manager.removeAccount(app)) {
+            System.out.println("What is the specific username for this application?");
+            String u = input.next();
+            if (manager.removeAccount(app, u)) {
                 System.out.println("This account has been removed!");
             } else {
-                System.out.println("This account does not exist!");
+                System.out.println("This Password Manager does not contain this account!");
             }
         }
     }
@@ -120,14 +122,14 @@ public class PasswordManagerApp {
     // MODIFIES
     // EFFECTS
     private void viewAccounts() {
-        if (manager.count() == 0) {
-            System.out.println("There are no accounts to view!");
+        if (manager.getCount() == 0) {
+            System.out.println("\nThere are no accounts to view!");
         } else {
-            for (int i = 0; i < manager.count(); i++) {
+            for (int i = 0; i < manager.getCount(); i++) {
                 Account a = manager.getAccount(i);
                 System.out.println("\n" + "Application: " + a.getApplicationName() + "\n"
                         + "Username: " + a.getUsername() + "\n"
-                        + "Password: " + a.getPassword() + "\n");
+                        + "Password: " + a.getPassword());
             }
         }
     }
@@ -137,6 +139,6 @@ public class PasswordManagerApp {
     // MODIFIES
     // EFFECTS
     private void printTotal() {
-        System.out.println("The total passwords you have saved are: " + manager.count());
+        System.out.println("The total passwords you have saved are: " + manager.getCount());
     }
 }

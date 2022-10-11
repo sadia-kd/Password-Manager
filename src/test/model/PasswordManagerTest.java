@@ -26,25 +26,26 @@ public class PasswordManagerTest {
 
     @Test
     public void testConstructor() {
-        assertEquals(0, passwordManagerEmpty.count());
+        assertEquals(0, passwordManagerEmpty.getCount());
     }
 
     @Test
     public void testAddAccount() {
+        assertEquals(0, passwordManagerEmpty.getCount());
         passwordManagerEmpty.addAccount(account1);
-        assertEquals(1, passwordManagerEmpty.count());
+        assertEquals(1, passwordManagerEmpty.getCount());
         assertEquals(account1, passwordManagerEmpty.getAccount(0));
     }
 
     @Test
     public void testAddAccountMultiple() {
-        assertEquals(0, passwordManagerEmpty.count());
+        assertEquals(0, passwordManagerEmpty.getCount());
         passwordManagerEmpty.addAccount(account1);
-        assertEquals(1, passwordManagerEmpty.count());
+        assertEquals(1, passwordManagerEmpty.getCount());
         passwordManagerEmpty.addAccount(account2);
-        assertEquals(2, passwordManagerEmpty.count());
+        assertEquals(2, passwordManagerEmpty.getCount());
         passwordManagerEmpty.addAccount(account3);
-        assertEquals(3, passwordManagerEmpty.count());
+        assertEquals(3, passwordManagerEmpty.getCount());
         assertEquals(account1, passwordManagerEmpty.getAccount(0));
         assertEquals(account2, passwordManagerEmpty.getAccount(1));
         assertEquals(account3, passwordManagerEmpty.getAccount(2));
@@ -52,42 +53,50 @@ public class PasswordManagerTest {
 
     @Test
     public void testAddAccountThere() {
-        assertTrue(passwordManagerEmpty.addAccount(account1));
-        assertEquals(1, passwordManagerEmpty.count());
-        passwordManagerEmpty.addAccount(account1);
-        //assertTrue(passwordManagerEmpty.checkAccountAlreadyThere(account1));
-        assertEquals(1, passwordManagerEmpty.count());
+        // TODO
+        assertEquals(2, passwordManagerFull.getCount());
+        assertTrue(passwordManagerFull.containsAccount("IG", "sadia"));
+        assertEquals(2, passwordManagerFull.getCount());
     }
 
     @Test
+    public void testDoesNotContain() {
+        Account a = new Account("SC", "skd", "123");
+        assertFalse(passwordManagerFull.containsAccount("SC", "skd"));
+        passwordManagerFull.addAccount(a);
+        assertEquals(3, passwordManagerFull.getCount());
+    }
+
+
+    @Test
     public void testRemoveAccountEmpty() {
-        passwordManagerEmpty.removeAccount("IG");
-        assertEquals(0, passwordManagerEmpty.count());
+        assertFalse(passwordManagerEmpty.removeAccount("IG", "sadia"));
+        assertEquals(0, passwordManagerEmpty.getCount());
     }
 
     @Test
     public void testRemoveAccount() {
-        assertEquals(2, passwordManagerFull.count());
-        passwordManagerFull.removeAccount("ssc");
-        assertEquals(1, passwordManagerFull.count());
+        assertEquals(2, passwordManagerFull.getCount());
+        assertTrue(passwordManagerFull.removeAccount("ssc", "skd"));
+        assertEquals(1, passwordManagerFull.getCount());
     }
 
     @Test
     public void testRemoveAccountMultiple() {
-        assertEquals(2, passwordManagerFull.count());
-        passwordManagerFull.removeAccount("ssc");
-        assertEquals(1, passwordManagerFull.count());
-        passwordManagerFull.removeAccount("IG");
-        assertEquals(0, passwordManagerFull.count());
+        assertEquals(2, passwordManagerFull.getCount());
+        assertTrue(passwordManagerFull.removeAccount("ssc", "skd"));
+        assertEquals(1, passwordManagerFull.getCount());
+        assertTrue(passwordManagerFull.removeAccount("IG", "sadia"));
+        assertEquals(0, passwordManagerFull.getCount());
     }
 
     @Test
     public void testRemoveMultipleNotThere() {
-        assertEquals(2, passwordManagerFull.count());
-        passwordManagerFull.removeAccount("Facebook");
-        assertEquals(2, passwordManagerFull.count());
-        passwordManagerFull.removeAccount("twitter");
-        assertEquals(2, passwordManagerFull.count());
+        assertEquals(2, passwordManagerFull.getCount());
+        assertFalse(passwordManagerFull.removeAccount("Facebook", "123"));
+        assertEquals(2, passwordManagerFull.getCount());
+        assertFalse(passwordManagerFull.removeAccount("twitter", "456"));
+        assertEquals(2, passwordManagerFull.getCount());
     }
 
 
