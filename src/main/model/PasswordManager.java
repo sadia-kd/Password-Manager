@@ -21,7 +21,7 @@ public class PasswordManager {
     // TODO
     //REQUIRES:
     //MODIFIES: this
-    //EFFECTS:
+    //EFFECTS: adds and Account to accounts
     public void addAccount(Account account) {
         accounts.add(account);
     }

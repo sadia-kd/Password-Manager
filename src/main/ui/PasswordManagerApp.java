@@ -110,9 +110,9 @@ public class PasswordManagerApp {
             System.out.println("What is the specific username for this application?");
             String u = input.next();
             if (manager.removeAccount(app, u)) {
-                System.out.println("This account has been removed!");
+                System.out.println("\nThis account has been removed!");
             } else {
-                System.out.println("This Password Manager does not contain this account!");
+                System.out.println("\nThis Password Manager does not contain this account!");
             }
         }
     }

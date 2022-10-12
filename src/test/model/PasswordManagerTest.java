@@ -67,6 +67,12 @@ public class PasswordManagerTest {
         assertEquals(3, passwordManagerFull.getCount());
     }
 
+    @Test
+    public void testDoesContain() {
+        assertTrue(passwordManagerFull.containsAccount("ssc", "skd"));
+        assertEquals(2, passwordManagerFull.getCount());
+    }
+
 
     @Test
     public void testRemoveAccountEmpty() {
