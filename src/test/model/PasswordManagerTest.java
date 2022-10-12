@@ -68,8 +68,14 @@ public class PasswordManagerTest {
     }
 
     @Test
-    public void testDoesContain() {
-        assertTrue(passwordManagerFull.containsAccount("ssc", "skd"));
+    public void testDoesContainSameApp() {
+        assertFalse(passwordManagerFull.containsAccount("ssc", "sadia123"));
+        assertEquals(2, passwordManagerFull.getCount());
+    }
+
+    @Test
+    public void testDoesContainSameUser() {
+        assertFalse(passwordManagerFull.containsAccount("cwl", "sadia"));
         assertEquals(2, passwordManagerFull.getCount());
     }
 
@@ -85,6 +91,20 @@ public class PasswordManagerTest {
         assertEquals(2, passwordManagerFull.getCount());
         assertTrue(passwordManagerFull.removeAccount("ssc", "skd"));
         assertEquals(1, passwordManagerFull.getCount());
+    }
+
+    @Test
+    public void testRemoveAccountSameApp() {
+        assertEquals(2, passwordManagerFull.getCount());
+        assertFalse(passwordManagerFull.removeAccount("IG", "sadia123"));
+        assertEquals(2, passwordManagerFull.getCount());
+    }
+
+    @Test
+    public void testRemoveAccountSameUsername() {
+        assertEquals(2, passwordManagerFull.getCount());
+        assertFalse(passwordManagerFull.removeAccount("cwl", "skd"));
+        assertEquals(2, passwordManagerFull.getCount());
     }
 
     @Test
