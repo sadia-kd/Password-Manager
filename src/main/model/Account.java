@@ -17,6 +17,8 @@ public class Account {
 
     }
 
+    // getters
+
     //EFFECTS: returns the application name of the account saved
     public String getApplicationName() {
         return application;

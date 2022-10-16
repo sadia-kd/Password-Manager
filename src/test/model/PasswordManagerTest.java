@@ -52,14 +52,14 @@ public class PasswordManagerTest {
     }
 
     @Test
-    public void testAddAccountThere() {
-        assertEquals(2, passwordManagerFull.getCount());
+    public void testContainsAccount() {
         assertTrue(passwordManagerFull.containsAccount("IG", "sadia"));
         assertEquals(2, passwordManagerFull.getCount());
     }
 
     @Test
     public void testDoesNotContain() {
+        assertEquals(2, passwordManagerFull.getCount());
         Account a = new Account("SC", "skd", "123");
         assertFalse(passwordManagerFull.containsAccount("SC", "skd"));
         passwordManagerFull.addAccount(a);

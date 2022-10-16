@@ -43,7 +43,7 @@ public class PasswordManagerApp {
     }
 
 
-    // EFFECTS: prints the operations available to perform on this password manager on the console
+    // EFFECTS: prints the operations available to perform on this password manager to the console
     private void printOptions() {
         System.out.println("\nPlease select one of the options you would like to perform:");
         System.out.println("\tAdd a password: add");
@@ -54,11 +54,11 @@ public class PasswordManagerApp {
     }
 
 
-    // followed format of TellerApp for getting the user input
-
+    // followed format of TellerApp for getting the user command input
+    //
     // REQUIRES: exact string written as the options
     // MODIFIES: this
-    // EFFECTS: processed the command the user inputs
+    // EFFECTS: processes the command the user inputs
     private void doNextOptions(String command) {
         if (command.equals("add")) {
             addPassword();
@@ -72,7 +72,6 @@ public class PasswordManagerApp {
             System.out.println("You did not enter one of the following options...");
         }
     }
-
 
 
     // MODIFIES: this
@@ -114,7 +113,7 @@ public class PasswordManagerApp {
     }
 
 
-    // EFFECTS: prints details of all the accounts
+    // EFFECTS: prints the specific details to view for all the accounts
     private void viewAccounts() {
         if (manager.getCount() == 0) {
             System.out.println("\nThere are no accounts to view!");
