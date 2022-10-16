@@ -7,11 +7,10 @@ public class Account {
     private String user;             // represents the username of the application that will be saved
     private String pass;             // represents the password of the application that will be saved
 
-    //TODO
-    //REQUIRES: nothing
-    //MODIFIES: nothing
-    //EFFECTS: creates a single account with given password, given username, and the application name
-    public Account(String app, String u,  String p) {
+
+    //EFFECTS: Constructor which creates a single account with the application name, given username,
+    //         and the given password
+    public Account(String app, String u, String p) {
         this.application = app;
         this.user = u;
         this.pass = p;
@@ -32,7 +31,5 @@ public class Account {
     public String getPassword() {
         return pass;
     }
-
-
 
 }

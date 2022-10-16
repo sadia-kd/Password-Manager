@@ -5,25 +5,22 @@ import model.PasswordManager;
 
 import java.util.Scanner;
 
-// This will run the Password Manager console application
+// Password Manager console application
 public class PasswordManagerApp {
     private PasswordManager manager;
     private Account account;
     private Scanner input;
 
-    // TODO
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+
+    // EFFECTS: runs the Password Manager Application
     public PasswordManagerApp() {
         runPasswordManagerApp();
     }
 
-    // TODO
-    // followed format of TellerApp project
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // followed format of TellerApp project to get user input
+
+    // MODIFIES: this
+    // EFFECTS: starts with processing the user input
     private void runPasswordManagerApp() {
         manager = new PasswordManager();
         input = new Scanner(System.in);
@@ -45,10 +42,8 @@ public class PasswordManagerApp {
         System.out.println("Thank you for using your Password Manager!");
     }
 
-    // TODO
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS: prints the operations available to perform on this password manager
+
+    // EFFECTS: prints the operations available to perform on this password manager on the console
     private void printOptions() {
         System.out.println("\nPlease select one of the options you would like to perform:");
         System.out.println("\tAdd a password: add");
@@ -58,11 +53,12 @@ public class PasswordManagerApp {
         System.out.println("\tQuit the App: quit");
     }
 
-    // TODO
-    // followed format of TellerApp
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS:
+
+    // followed format of TellerApp for getting the user input
+
+    // REQUIRES: exact string written as the options
+    // MODIFIES: this
+    // EFFECTS: processed the command the user inputs
     private void doNextOptions(String command) {
         if (command.equals("add")) {
             addPassword();
@@ -77,10 +73,11 @@ public class PasswordManagerApp {
         }
     }
 
-    // TODO
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS
+
+
+    // MODIFIES: this
+    // EFFECTS: Adds password only if it doesn't already contain an account for a same application with
+    //          same username as this means that account already is saved
     private void addPassword() {
         System.out.println("Enter the name of the Application: ");
         String app = input.next();
@@ -97,10 +94,9 @@ public class PasswordManagerApp {
         }
     }
 
-    // TODO
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS
+
+    // MODIFIES: this
+    // EFFECTS: removes an account from the Password Manager
     private void removePassword() {
         if (manager.getCount() == 0) {
             System.out.println("You do not have any passwords saved ... ");
@@ -117,10 +113,8 @@ public class PasswordManagerApp {
         }
     }
 
-    // TODO
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS
+
+    // EFFECTS: prints details of all the accounts
     private void viewAccounts() {
         if (manager.getCount() == 0) {
             System.out.println("\nThere are no accounts to view!");
@@ -134,10 +128,8 @@ public class PasswordManagerApp {
         }
     }
 
-    // TODO
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS
+
+    // EFFECTS: prints the total # of accounts saved
     private void printTotal() {
         System.out.println("The total passwords you have saved are: " + manager.getCount());
     }

@@ -53,7 +53,6 @@ public class PasswordManagerTest {
 
     @Test
     public void testAddAccountThere() {
-        // TODO
         assertEquals(2, passwordManagerFull.getCount());
         assertTrue(passwordManagerFull.containsAccount("IG", "sadia"));
         assertEquals(2, passwordManagerFull.getCount());
