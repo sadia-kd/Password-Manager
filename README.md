@@ -36,3 +36,8 @@ name such as the account and username saved
 - As a user, I want to be able to remove an account from my Password Manager
 - As a user, I want to be able to view all the accounts saved in my Password Manager
 - As a user, I want to be able to see the total number of accounts saved 
+
+### Additional User Stories added for Phase2:
+- As a user, I want to be able to save the accounts I added to my password manager to file
+- As a user, when I start the Password Manager Application, I want to be given the option to load my
+  accounts saved from file
