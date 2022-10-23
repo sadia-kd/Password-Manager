@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.ToJsonObject;
+
 // Account represents one account info that will be saved to the Password Manager with its password, username
 // and application name
-public class Account {
+public class Account implements ToJsonObject {
     private String application;      // represents the name of the application that will be saved
     private String user;             // represents the username of the application that will be saved
     private String pass;             // represents the password of the application that will be saved
@@ -14,11 +17,10 @@ public class Account {
         this.application = app;
         this.user = u;
         this.pass = p;
-
     }
 
-    // getters
 
+    // Getters
     //EFFECTS: returns the application name of the account saved
     public String getApplicationName() {
         return application;
@@ -33,5 +35,19 @@ public class Account {
     public String getPassword() {
         return pass;
     }
+
+
+
+    // EFFECTS: returns this as JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("application", application);
+        json.put("user", user);
+        json.put("pass", pass);
+        return json;
+    }
+
+
 
 }

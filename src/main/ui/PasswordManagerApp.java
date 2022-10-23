@@ -2,18 +2,30 @@ package ui;
 
 import model.Account;
 import model.PasswordManager;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Password Manager console application
 public class PasswordManagerApp {
+    private static final String JSON_STORE = "./data/myFile.txt";
     private PasswordManager manager;
     private Account account;
     private Scanner input;
 
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    // TODO
+    // fix specification
 
     // EFFECTS: runs the Password Manager Application
-    public PasswordManagerApp() {
+    public PasswordManagerApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runPasswordManagerApp();
     }
 
@@ -50,6 +62,8 @@ public class PasswordManagerApp {
         System.out.println("\tRemove a password: remove");
         System.out.println("\tView the accounts saved: view");
         System.out.println("\tTotal passwords saved: total");
+        System.out.println("\tSave Password Manager to file: save");
+        System.out.println("\tLoad Password Manager from file: load");
         System.out.println("\tQuit the App: quit");
     }
 
@@ -68,6 +82,10 @@ public class PasswordManagerApp {
             viewAccounts();
         } else if (command.equals("total")) {
             printTotal();
+        } else if (command.equals("save")) {
+            savePasswordManager();
+        } else if (command.equals("load")) {
+            loadPasswordManager();
         } else {
             System.out.println("You did not enter one of the following options...");
         }
@@ -120,9 +138,11 @@ public class PasswordManagerApp {
         } else {
             for (int i = 0; i < manager.getCount(); i++) {
                 Account a = manager.getAccount(i);
-                System.out.println("\n" + "Application: " + a.getApplicationName() + "\n"
+                System.out.println("-----------------------------------------------"
+                        + "\n" + "Application: " + a.getApplicationName() + "\n"
                         + "Username: " + a.getUsername() + "\n"
-                        + "Password: " + a.getPassword());
+                        + "Password: " + a.getPassword() + "\n"
+                        + "-----------------------------------------------");
             }
         }
     }
@@ -132,4 +152,35 @@ public class PasswordManagerApp {
     private void printTotal() {
         System.out.println("The total passwords you have saved are: " + manager.getCount());
     }
+
+
+
+    //REQUIRES
+    //MODIFIES
+    //EFFECTS
+    public void savePasswordManager() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(manager);
+            jsonWriter.close();
+            System.out.println("Password Manager file has been saved to " + JSON_STORE);
+        }  catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //REQUIRES
+    //MODIFIES
+    //EFFECTS
+    public void loadPasswordManager() {
+        try {
+            manager = jsonReader.read();
+            System.out.println("Loaded Password Manager from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
+
 }
