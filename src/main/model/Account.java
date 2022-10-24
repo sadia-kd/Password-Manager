@@ -1,11 +1,11 @@
 package model;
 
 import org.json.JSONObject;
-import persistence.ToJsonObject;
+import persistence.Writable;
 
 // Account represents one account info that will be saved to the Password Manager with its password, username
 // and application name
-public class Account implements ToJsonObject {
+public class Account implements Writable {
     private String application;      // represents the name of the application that will be saved
     private String user;             // represents the username of the application that will be saved
     private String pass;             // represents the password of the application that will be saved
@@ -35,7 +35,6 @@ public class Account implements ToJsonObject {
     public String getPassword() {
         return pass;
     }
-
 
 
     // EFFECTS: returns this as JSON object

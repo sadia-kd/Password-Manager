@@ -2,7 +2,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.ToJsonObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 // PasswordManager represents all the accounts that will be saved
-public class PasswordManager implements ToJsonObject {
+public class PasswordManager implements Writable {
     private final List<Account> accounts;
 
 
@@ -72,9 +72,10 @@ public class PasswordManager implements ToJsonObject {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("accounts", accounts);
+        json.put("accounts", accountsToJson());
         return json;
     }
+
 
     //EFFECTS: returns accounts in this password manager as a JSON array
     private JSONArray accountsToJson() {

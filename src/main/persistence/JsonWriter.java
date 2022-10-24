@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 // Represents a writer that writes JSON representation of PasswordManager to file
 public class JsonWriter {
     private static final int TAB = 10;
-    private PrintWriter printWriter;
+    private PrintWriter writer;
     private String location;
 
     //REQUIRES
@@ -26,7 +26,7 @@ public class JsonWriter {
     //MODIFIES
     //EFFECTS
     public void open() throws FileNotFoundException {
-        printWriter = new PrintWriter(new File(location));
+        writer = new PrintWriter(new File(location));
     }
 
     //REQUIRES
@@ -41,14 +41,14 @@ public class JsonWriter {
     //MODIFIES
     //EFFECTS
     public void saveToFile(String json) {
-        printWriter.print(json);
+        writer.print(json);
     }
 
     //REQUIRES
     //MODIFIES
     //EFFECTS
     public void close() {
-        printWriter.close();
+        writer.close();
     }
 
 

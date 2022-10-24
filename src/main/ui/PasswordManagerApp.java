@@ -11,21 +11,22 @@ import java.util.Scanner;
 
 // Password Manager console application
 public class PasswordManagerApp {
-    private static final String JSON_STORE = "./data/myFile.txt";
+    // private static final String JSON_STORE = "./data/myFile.txt";
     private PasswordManager manager;
     private Account account;
     private Scanner input;
 
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    //private JsonWriter jsonWriter;
+    //private JsonReader jsonReader;
 
     // TODO
     // fix specification
 
     // EFFECTS: runs the Password Manager Application
-    public PasswordManagerApp() throws FileNotFoundException {
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+    public PasswordManagerApp() //throws FileNotFoundException
+    {
+        //jsonWriter = new JsonWriter(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
         runPasswordManagerApp();
     }
 
@@ -82,13 +83,15 @@ public class PasswordManagerApp {
             viewAccounts();
         } else if (command.equals("total")) {
             printTotal();
-        } else if (command.equals("save")) {
-            savePasswordManager();
-        } else if (command.equals("load")) {
-            loadPasswordManager();
         } else {
             System.out.println("You did not enter one of the following options...");
         }
+//        else if (command.equals("save")) {
+//            savePasswordManager();
+//        } else if (command.equals("load")) {
+//            loadPasswordManager();
+//        }
+
     }
 
 
@@ -155,31 +158,31 @@ public class PasswordManagerApp {
 
 
 
-    //REQUIRES
-    //MODIFIES
-    //EFFECTS
-    public void savePasswordManager() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(manager);
-            jsonWriter.close();
-            System.out.println("Password Manager file has been saved to " + JSON_STORE);
-        }  catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-    }
+//    //REQUIRES
+//    //MODIFIES
+//    //EFFECTS
+//    public void savePasswordManager() {
+//        try {
+//            jsonWriter.open();
+//            jsonWriter.write(manager);
+//            jsonWriter.close();
+//            System.out.println("Password Manager file has been saved to " + JSON_STORE);
+//        }  catch (FileNotFoundException e) {
+//            System.out.println("Unable to write to file: " + JSON_STORE);
+//        }
+//    }
 
-    //REQUIRES
-    //MODIFIES
-    //EFFECTS
-    public void loadPasswordManager() {
-        try {
-            manager = jsonReader.read();
-            System.out.println("Loaded Password Manager from " + JSON_STORE);
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
-        }
-    }
+//    //REQUIRES
+//    //MODIFIES
+//    //EFFECTS
+//    public void loadPasswordManager() {
+//        try {
+//            manager = jsonReader.read();
+//            System.out.println("Loaded Password Manager from " + JSON_STORE);
+//        } catch (IOException e) {
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+//        }
+//    }
 
 
 

@@ -9,10 +9,9 @@ import java.util.stream.Stream;
 import model.Account;
 import org.json.*;
 
-// Followed the sample application to model my code
-
 import model.PasswordManager;
 
+// Followed the sample application to model my code
 // Represents a reader that reads Password Manager from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -57,19 +56,19 @@ public class JsonReader {
 
 
     // MODIFIES: pm
-    // EFFECTS: parses accounts from JSON object and adds them to passwordmanager
+    // EFFECTS: parses accounts from JSON object and adds them to password manager
     private void addAccounts(PasswordManager pm, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("accounts");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addAccount(pm, nextThingy);
+            JSONObject nextAccount = (JSONObject) json;
+            addAccount(pm, nextAccount);
         }
     }
 
 
     //REQUIRES
     //MODIFIES: pm
-    //EFFECTS: parses Account from JSON object and adds it to passwordmanager
+    //EFFECTS: parses Account from JSON object and adds it to password manager
     private void addAccount(PasswordManager pm, JSONObject jsonObject) {
         String application = jsonObject.getString("application");
         String user = jsonObject.getString("user");
