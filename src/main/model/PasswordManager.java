@@ -37,7 +37,7 @@ public class PasswordManager implements Writable {
         return false;
     }
 
-    // followed format from the Hockey project given
+    // Followed format from the Hockey project given
     //
     //REQUIRES: must be given a non-empty string
     //MODIFIES: this
@@ -53,8 +53,7 @@ public class PasswordManager implements Writable {
         return false;
     }
 
-    // getters
-
+    // Getters
     //EFFECTS: returns the total count of accounts saved
     public int getCount() {
         return accounts.size();
@@ -66,7 +65,7 @@ public class PasswordManager implements Writable {
     }
 
 
-    //EFFECTS: returns this as JSON object
+    //EFFECTS: returns as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -74,7 +73,7 @@ public class PasswordManager implements Writable {
         return json;
     }
 
-    //EFFECTS: returns accounts in this password manager as a JSON array
+    //EFFECTS: returns accounts in this Password Manager as a JSON array
     private JSONArray accountsToJson() {
         JSONArray jsonArray = new JSONArray();
 

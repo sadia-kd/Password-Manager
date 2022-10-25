@@ -9,34 +9,34 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Password Manager console application
+// Represents the Password Manager console application
 public class PasswordManagerApp {
-    // private static final String JSON_STORE = "./data/myFile.txt";
-    private PasswordManager manager;
+    private static final String JSON_STORE = "./data/PasswordManager.json";
     private Account account;
+    private PasswordManager manager;
     private Scanner input;
 
-    //private JsonWriter jsonWriter;
-    //private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    // TODO
-    // fix specification
 
-    // EFFECTS: runs the Password Manager Application
-    public PasswordManagerApp() {
-        //jsonWriter = new JsonWriter(JSON_STORE);
-        //jsonReader = new JsonReader(JSON_STORE);
+    // EFFECTS: constructs PasswordManager and runs the Password Manager Application
+    public PasswordManagerApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runPasswordManagerApp();
     }
 
-    // followed format of TellerApp project to get user input
 
+    // followed format of TellerApp project to get user input
+    //
     // MODIFIES: this
     // EFFECTS: starts with processing the user input
     private void runPasswordManagerApp() {
         manager = new PasswordManager();
         input = new Scanner(System.in);
-        System.out.println("\nHello! Welcome to your Password Manager!");
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("Hello! Welcome to your Password Manager!");
 
         boolean continueRunning = true;
         String command = null;
@@ -51,13 +51,15 @@ public class PasswordManagerApp {
                 doNextOptions(command);
             }
         }
+        System.out.println("-------------------------------------------------------------------");
         System.out.println("Thank you for using your Password Manager!");
     }
 
 
-    // EFFECTS: prints the operations available to perform on this password manager to the console
+    // EFFECTS: prints the operations available to perform on this Password Manager to the console
     private void printOptions() {
         System.out.println("\nPlease select one of the options you would like to perform:");
+        System.out.println("-------------------------------------------------------------------");
         System.out.println("\tAdd a password: add");
         System.out.println("\tRemove a password: remove");
         System.out.println("\tView the accounts saved: view");
@@ -65,14 +67,14 @@ public class PasswordManagerApp {
         System.out.println("\tSave Password Manager to file: save");
         System.out.println("\tLoad Password Manager from file: load");
         System.out.println("\tQuit the App: quit");
+        System.out.println("-------------------------------------------------------------------");
     }
 
 
     // followed format of TellerApp for getting the user command input
     //
-    // REQUIRES: exact string written as the options
     // MODIFIES: this
-    // EFFECTS: processes the command the user inputs
+    // EFFECTS: processes the command that the user inputs
     private void doNextOptions(String command) {
         if (command.equals("add")) {
             addPassword();
@@ -82,23 +84,21 @@ public class PasswordManagerApp {
             viewAccounts();
         } else if (command.equals("total")) {
             printTotal();
+        } else if (command.equals("save")) {
+            savePasswordManager();
+        } else if (command.equals("load")) {
+            loadPasswordManager();
         } else {
             System.out.println("You did not enter one of the following options...");
         }
-//        else if (command.equals("save")) {
-//            savePasswordManager();
-//        } else if (command.equals("load")) {
-//            loadPasswordManager();
-//        }
-
     }
 
 
     // MODIFIES: this
     // EFFECTS: Adds password only if it doesn't already contain an account for a same application with
-    //          same username as this means that account already is saved
+    //          same username as this means that a similar account is already saved
     private void addPassword() {
-        System.out.println("Enter the name of the Application: ");
+        System.out.println("\nEnter the name of the Application: ");
         String app = input.next();
         System.out.println("Enter the username: ");
         String u = input.next();
@@ -156,33 +156,28 @@ public class PasswordManagerApp {
     }
 
 
-
-//    //REQUIRES
-//    //MODIFIES
-//    //EFFECTS
-//    public void savePasswordManager() {
-//        try {
-//            jsonWriter.open();
-//            jsonWriter.write(manager);
-//            jsonWriter.close();
-//            System.out.println("Password Manager file has been saved to " + JSON_STORE);
-//        }  catch (FileNotFoundException e) {
-//            System.out.println("Unable to write to file: " + JSON_STORE);
-//        }
-//    }
-
-//    //REQUIRES
-//    //MODIFIES
-//    //EFFECTS
-//    public void loadPasswordManager() {
-//        try {
-//            manager = jsonReader.read();
-//            System.out.println("Loaded Password Manager from " + JSON_STORE);
-//        } catch (IOException e) {
-//            System.out.println("Unable to read from file: " + JSON_STORE);
-//        }
-//    }
+    // EFFECTS: saves the Password Manager to file
+    public void savePasswordManager() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(manager);
+            jsonWriter.close();
+            System.out.println("Password Manager file has been saved to " + JSON_STORE);
+        }  catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
 
 
+    // MODIFIES: this
+    // EFFECTS: loads the Password Manager from file
+    public void loadPasswordManager() {
+        try {
+            manager = jsonReader.read();
+            System.out.println("Loaded Password Manager from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 
 }

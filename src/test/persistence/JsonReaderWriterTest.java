@@ -11,12 +11,13 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-// Tests for JsonReader class
+// Tests for JsonReader and JsonWriter classes
 public class JsonReaderWriterTest {
     private PasswordManager pm;
     private Account a1;
     private Account a2;
     private Account a3;
+
 
     @BeforeEach
     public void setUp() {
@@ -26,9 +27,10 @@ public class JsonReaderWriterTest {
         this.a3 = new Account("ssc", "sadia123", "password");
     }
 
+
     @Test
     public void testJsonReaderNotExistentFile() {
-        JsonReader jsonReader = new JsonReader("./data/notAvailable.txt");
+        JsonReader jsonReader = new JsonReader("./data/notAvailable.json");
         try {
             PasswordManager passwordManager = jsonReader.read();
             fail("Exception Expected");
@@ -36,6 +38,19 @@ public class JsonReaderWriterTest {
             // nothing needed here: will pass
         }
     }
+
+
+    @Test
+    public void testJsonWriterInvalidFile() {
+        try {
+            JsonWriter jsonWriter = new JsonWriter("./data/my\0illegal:fileName.json");
+            jsonWriter.open();
+            fail("Exception was expected");
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
 
     @Test
     public void testJsonWriterReaderEmptyPasswordManager() {
@@ -88,7 +103,6 @@ public class JsonReaderWriterTest {
    }
 
 
-
     @Test
     public void testGeneralReaderWriter() {
         pm.addAccount(a1);
@@ -117,8 +131,5 @@ public class JsonReaderWriterTest {
         assertEquals(a2.getUsername(), account.getUsername());
         assertEquals(a2.getPassword(), account.getPassword());
     }
-
-
-
 
 }

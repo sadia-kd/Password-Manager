@@ -11,28 +11,28 @@ import org.json.*;
 
 import model.PasswordManager;
 
-// Followed the sample application to model my code
+// Followed the sample application given for P2 to model my code
 // Represents a reader that reads Password Manager from JSON data stored in file
 public class JsonReader {
     private String source;
+
 
     //EFFECTS: constructor which makes reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
-    //REQUIRES
-    //MODIFIES
-    //EFFECTS
+
+    //EFFECTS: reads password manager from file and returns it;
+    //         throws IOException if an error occurs reading data from file
     public PasswordManager read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parsePasswordManager(jsonObject);
     }
 
-    //REQUIRES
-    //MODIFIES
-    //EFFECTS
+
+    //EFFECTS: reads source file as string and returns it
     public String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -44,14 +44,11 @@ public class JsonReader {
     }
 
 
-    //REQUIRES
-    //MODIFIES
     //EFFECTS: parses password manager from JSON object and returns it
     public PasswordManager parsePasswordManager(JSONObject jsonObject) {
         PasswordManager pm = new PasswordManager();
         addAccounts(pm, jsonObject);
         return pm;
-
     }
 
 
@@ -66,7 +63,6 @@ public class JsonReader {
     }
 
 
-    //REQUIRES
     //MODIFIES: pm
     //EFFECTS: parses Account from JSON object and adds it to password manager
     private void addAccount(PasswordManager pm, JSONObject jsonObject) {

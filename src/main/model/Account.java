@@ -36,7 +36,7 @@ public class Account implements Writable {
         return pass;
     }
 
-    // EFFECTS: returns this as JSON object
+    // EFFECTS: returns as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
