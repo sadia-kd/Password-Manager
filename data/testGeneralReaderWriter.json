@@ -1,0 +1,17 @@
+{"accounts": [
+          {
+                    "application": "IG",
+                    "pass": "123",
+                    "user": "sadia"
+          },
+          {
+                    "application": "SC",
+                    "pass": "345",
+                    "user": "skd"
+          },
+          {
+                    "application": "ssc",
+                    "pass": "password",
+                    "user": "sadia123"
+          }
+]}
