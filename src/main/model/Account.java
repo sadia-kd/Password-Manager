@@ -36,7 +36,6 @@ public class Account implements Writable {
         return pass;
     }
 
-
     // EFFECTS: returns this as JSON object
     @Override
     public JSONObject toJson() {
@@ -46,7 +45,5 @@ public class Account implements Writable {
         json.put("pass", pass);
         return json;
     }
-
-
 
 }

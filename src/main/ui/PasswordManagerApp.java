@@ -23,8 +23,7 @@ public class PasswordManagerApp {
     // fix specification
 
     // EFFECTS: runs the Password Manager Application
-    public PasswordManagerApp() //throws FileNotFoundException
-    {
+    public PasswordManagerApp() {
         //jsonWriter = new JsonWriter(JSON_STORE);
         //jsonReader = new JsonReader(JSON_STORE);
         runPasswordManagerApp();

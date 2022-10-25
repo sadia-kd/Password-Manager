@@ -66,8 +66,6 @@ public class PasswordManager implements Writable {
     }
 
 
-
-
     //EFFECTS: returns this as JSON object
     @Override
     public JSONObject toJson() {
@@ -75,7 +73,6 @@ public class PasswordManager implements Writable {
         json.put("accounts", accountsToJson());
         return json;
     }
-
 
     //EFFECTS: returns accounts in this password manager as a JSON array
     private JSONArray accountsToJson() {
@@ -86,7 +83,4 @@ public class PasswordManager implements Writable {
         }
         return jsonArray;
     }
-
-
-
 }
