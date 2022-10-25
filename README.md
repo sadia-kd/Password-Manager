@@ -31,6 +31,7 @@ name such as the account and username saved
 - As a user, I want to be able to see the total number of passwords saved 
 
 
+
 ### Done for Phase1:
 - As a user, I want to be able to add an account to my Password Manager with its password, user & application name
 - As a user, I want to be able to remove an account from my Password Manager
@@ -39,5 +40,4 @@ name such as the account and username saved
 
 ### Additional User Stories added for Phase2:
 - As a user, I want to be able to save the accounts I added to my password manager to file
-- As a user, when I start the Password Manager Application, I want to be given the option to load my
-  accounts saved from file
+- As a user, I want to be able to load my accounts saved from file
