@@ -64,8 +64,8 @@ public class PasswordManagerApp {
         System.out.println("\tRemove a password: remove");
         System.out.println("\tView the accounts saved: view");
         System.out.println("\tTotal passwords saved: total");
-        System.out.println("\tSave Password Manager to file: save");
-        System.out.println("\tLoad Password Manager from file: load");
+        System.out.println("\t*** Save Password Manager to file: save");
+        System.out.println("\t*** Load Password Manager from file: load");
         System.out.println("\tQuit the App: quit");
         System.out.println("-------------------------------------------------------------------");
     }

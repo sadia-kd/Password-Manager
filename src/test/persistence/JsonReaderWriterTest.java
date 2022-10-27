@@ -82,7 +82,7 @@ public class JsonReaderWriterTest {
        try {
            jsonWriter.open();
        } catch (FileNotFoundException e) {
-           fail("");
+           fail("Exception not thrown!");
        }
        jsonWriter.write(pm);
        jsonWriter.close();
