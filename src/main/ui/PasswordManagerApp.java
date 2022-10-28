@@ -28,7 +28,8 @@ public class PasswordManagerApp {
     }
 
 
-    // followed format of TellerApp project to get user input
+    // Followed format of TellerApp project to get user input
+    // Source: https://github.students.cs.ubc.ca/CPSC210/TellerApp
     //
     // MODIFIES: this
     // EFFECTS: starts with processing the user input
@@ -64,14 +65,15 @@ public class PasswordManagerApp {
         System.out.println("\tRemove a password: remove");
         System.out.println("\tView the accounts saved: view");
         System.out.println("\tTotal passwords saved: total");
-        System.out.println("\t*** Save Password Manager to file: save");
-        System.out.println("\t*** Load Password Manager from file: load");
+        System.out.println("\t* Save Password Manager to file: save *");
+        System.out.println("\t* Load Password Manager from file: load *");
         System.out.println("\tQuit the App: quit");
         System.out.println("-------------------------------------------------------------------");
     }
 
 
     // followed format of TellerApp for getting the user command input
+    // Source: https://github.students.cs.ubc.ca/CPSC210/TellerApp
     //
     // MODIFIES: this
     // EFFECTS: processes the command that the user inputs

@@ -12,6 +12,8 @@ import org.json.*;
 import model.PasswordManager;
 
 // Followed the sample application given for P2 to model my code
+// Source: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // Represents a reader that reads Password Manager from JSON data stored in file
 public class JsonReader {
     private String source;

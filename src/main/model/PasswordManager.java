@@ -41,7 +41,7 @@ public class PasswordManager implements Writable {
     //
     //REQUIRES: must be given a non-empty string
     //MODIFIES: this
-    //EFFECTS: remove the account if there is an account saved with app as the application name and
+    //EFFECTS: removes the account if there is an account saved with app as the application name and
     //         u as the username
     public boolean removeAccount(String app, String u) {
         for (Account a : accounts) {

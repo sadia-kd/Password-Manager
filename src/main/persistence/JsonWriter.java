@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Followed the sample application given for P2 to model my code
+// Source: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // Represents a writer that writes JSON representation of PasswordManager to file
 public class JsonWriter {
     private static final int TAB = 10;
