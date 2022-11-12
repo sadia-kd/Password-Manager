@@ -28,7 +28,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     private JFrame frame;
 
     private JPanel panel;
-    private JScrollPane scrollPane;
+    private JPanel panel2;
 
     private JTable table;
     private DefaultTableModel defaultTableModel;
@@ -55,12 +55,14 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     private JTextField t4;
     private JTextField t5;
 
+    private JLabel countLabel;
+
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
     private Border br = BorderFactory.createLineBorder(Color.black);
 
-    public PasswordManagerGui() {
+    public PasswordManagerGui() throws FileNotFoundException {
         passwordManager = new PasswordManager();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -97,14 +99,13 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         menu.add(item1);
         menu.add(item2);
 
-        menuBar.add(menu);
         menu.setMnemonic(KeyEvent.VK_A);
+        menuBar.add(menu);
 
-        menu.addActionListener(this);
+        //menu.addActionListener(this);
 
         frame.add(menuBar);
         frame.setJMenuBar(menuBar);
-
     }
 
 
@@ -112,40 +113,50 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         //Creating a JPanel for the JFrame
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        //panel.setLayout(null);
         panel.setBorder(BorderFactory.createLineBorder(Color.red));
         // changing the background color of the panel
         panel.setBackground(Color.lightGray);
         panel.setBounds(10,10,(WIDTH / 5) * 3,HEIGHT - 20);
         setButtons();
 
-        scrollPane = new JScrollPane();
-        scrollPane.setLayout(null);
-        scrollPane.setBorder(br);
-        scrollPane.setBackground(Color.GRAY);
-        scrollPane.setBounds(320,10,(WIDTH / 5) * 3 - 50,HEIGHT / 8);
+        panel2 = new JPanel();
+        panel2.setLayout(null);
+        panel2.setBorder(br);
+        panel2.setBackground(Color.GRAY);
+        panel2.setBounds(320,10,(WIDTH / 5) * 3 - 50,HEIGHT / 8);
 
         //adding a label element to the panel
-        JLabel label = new JLabel("Accounts");
-        //label.setSize(90, 25);
-        //label.setBorder(BorderFactory.createLineBorder(Color.red));
-        label.setBounds(10,10,100,30);
-        scrollPane.add(label);
+//        JLabel label = new JLabel("Accounts");
+//        //label.setSize(90, 25);
+//        //label.setBorder(BorderFactory.createLineBorder(Color.red));
+//        label.setBounds(10,10,100,30);
+//        panel2.add(label);
 
-        JLabel countLabel = new JLabel("Total Accounts Saved: " + passwordManager.getCount());
-        countLabel.setBounds(10,30,200,20);
-        scrollPane.add(countLabel);
+        countLabel = new JLabel("Total Accounts Saved: " + passwordManager.getCount());
+        countLabel.setMinimumSize(new Dimension(100, 20));
+        countLabel.setBounds(10,20,200,20);
+        panel2.add(countLabel);
 
         //adding to the JFrame
         frame.add(panel);
-        frame.add(scrollPane);
+        frame.add(panel2);
         setTable();
     }
 
+//    private void updateSentence() {
+//        countLabel = new JLabel("Total Accounts Saved: " + passwordManager.getCount());
+//        countLabel.setMinimumSize(new Dimension(100, 20));
+//        countLabel.setBounds(10,20,200,20);
+//        panel2.add(countLabel);
+//    }
+
     private void setButtons() {
-        button1 = new JButton("ADD");
         addEntries();
+        button1 = new JButton("ADD");
         panel.add(button1);
         button1.addActionListener(this);
+
 
         button2 = new JButton("REMOVE");
         //removeEntries();
@@ -177,13 +188,19 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
 
     private void addEntries() {
         l1 = new JLabel("Application: ");
+        l1.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 15));
         t1 = new JTextField(50);
+        t1.setFont(new Font("Aerial", Font.BOLD, 20));
 
         l2 = new JLabel("Username: ");
+        l2.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 15));
         t2 = new JTextField(10);
+        t2.setFont(new Font("Aerial", Font.BOLD, 20));
 
         l3 = new JLabel("Password: ");
+        l3.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 15));
         t3 = new JTextField(10);
+        t3.setFont(new Font("Aerial", Font.BOLD, 20));
 
         setNull();
 
@@ -224,7 +241,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     private void addPassword() {
         String app = t1.getText();
         String u = t2.getText();
-        String p = t2.getText();
+        String p = t3.getText();
         account = new Account(app, u, p);
 
         if (passwordManager.containsAccount(app, u)) {
@@ -238,13 +255,12 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
             Object[] newRow = {app, u, p};
             defaultTableModel.addRow(newRow);
         }
-
     }
 
     private void removePassword() {
         String app = t1.getText();
         String u = t2.getText();
-        String p = t2.getText();
+        String p = t3.getText();
         if (passwordManager.getCount() == 0) {
             System.out.println("You do not have any passwords saved ... ");
             setNull();
@@ -294,6 +310,10 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         try {
             passwordManager = jsonReader.read();
             System.out.println("Loaded Password Manager from " + JSON_STORE);
+
+            JOptionPane.showMessageDialog(null, "Loaded!",
+                    "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
