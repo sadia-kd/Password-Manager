@@ -76,9 +76,6 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
 
     private void setUp() {
         frame.setTitle("PASSWORD MANAGER");
-        // TODO
-        // what should i use
-        //frame.setLayout(new GridLayout());
         frame.setLayout(null);
         frame.setBounds(0,0, WIDTH + 90, HEIGHT + 60);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,7 +110,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         //Creating a JPanel for the JFrame
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        //panel.setLayout(null);
+        //panel.setLayout(new GridLayout());
         panel.setBorder(BorderFactory.createLineBorder(Color.red));
         // changing the background color of the panel
         panel.setBackground(Color.lightGray);
@@ -175,6 +172,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
                 "Pass:"};
 
         defaultTableModel = new DefaultTableModel(data, columnNames);
+
         table = new JTable(defaultTableModel);
         table.setBackground(Color.pink);
         table.setBorder(BorderFactory.createLineBorder(Color.red, 2));
@@ -183,6 +181,18 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         JScrollPane pane2 = new JScrollPane(table);
         pane2.setBounds(320,20 + HEIGHT / 8,(WIDTH / 5) * 3 - 50, HEIGHT / 2 + 160);
         frame.add(pane2);
+    }
+
+    private void clearTable() {
+        defaultTableModel.setRowCount(0);
+        for (int i = 0; i < passwordManager.getCount(); i++) {
+            Account account = passwordManager.getAccount(i);
+            String app = account.getApplicationName();
+            String u = account.getUsername();
+            String p = account.getPassword();
+            Object[] newRow = {app, u, p};
+            defaultTableModel.addRow(newRow);
+        }
     }
 
 
@@ -268,15 +278,9 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
                     "Problem!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (passwordManager.removeAccount(app, u)) {
-
-                Object[] row = {app, u, p};
-                // TODO
-                // fix
-                //defaultTableModel.removeRow();
-                defaultTableModel.addRow(row);
-
                 System.out.println("\nThis account has been removed!");
                 setNull();
+                clearTable();
             } else {
                 System.out.println("\nThis Password Manager does not contain this account!");
                 setNull();
@@ -293,29 +297,34 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     }
 
     private void savePasswordManager() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(passwordManager);
-            jsonWriter.close();
+        if (passwordManager.getCount() == 0) {
+            JOptionPane.showMessageDialog(null, "You have not added any passwords to save!",
+                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                jsonWriter.open();
+                jsonWriter.write(passwordManager);
+                jsonWriter.close();
 
-            JOptionPane.showMessageDialog(null, "Saved!",
-                    "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Saved!",
+                        "Congrats!", JOptionPane.INFORMATION_MESSAGE);
 
-        }  catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            }  catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null, "Unable to write to file: " + JSON_STORE,
+                        "Problem!", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 
     private void loadPasswordManager() {
         try {
             passwordManager = jsonReader.read();
-            System.out.println("Loaded Password Manager from " + JSON_STORE);
-
-            JOptionPane.showMessageDialog(null, "Loaded!",
+            JOptionPane.showMessageDialog(null, "Loaded Password Manager from " + JSON_STORE,
                     "Congrats!", JOptionPane.INFORMATION_MESSAGE);
-
+            clearTable();
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE,
+                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
