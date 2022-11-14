@@ -17,48 +17,38 @@ import java.io.IOException;
 
 
 public class PasswordManagerGui extends JFrame implements ActionListener {
-    private Account account;
-    private PasswordManager passwordManager;
-
     private static final String JSON_STORE = "./data/PasswordManagerGUI.json";
-
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
 
-    private JFrame frame;
+    private Account account;
+    private PasswordManager passwordManager;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    private JPanel panel;
+    private JFrame frame;
+    private JPanel panel1;
     private JPanel panel2;
+    private JScrollPane scrollPane;
 
     private JTable table;
     private DefaultTableModel defaultTableModel;
 
-    private JButton button1;
-    private JButton button2;
+    private JButton addButton;
+    private JButton removeButton;
 
     private JMenuBar menuBar;
     private JMenu menu;
+    private JMenuItem saveItem;
+    private JMenuItem loadItem;
 
-    private JMenuItem item1;
-    private JMenuItem item2;
-
+    private JLabel countLabel;
     private JLabel l1;
     private JLabel l2;
     private JLabel l3;
-
     private JTextField t1;
     private JTextField t2;
     private JTextField t3;
-
-    private JLabel l4;
-    private JLabel l5;
-    private JTextField t4;
-    private JTextField t5;
-
-    private JLabel countLabel;
-
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
 
     private Border br = BorderFactory.createLineBorder(Color.black);
 
@@ -70,9 +60,10 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         frame = new JFrame();
         setUp();
         setMenu();
-        addPanel();
+        addPanels();
         frame.setVisible(true);
     }
+
 
     private void setUp() {
         frame.setTitle("PASSWORD MANAGER");
@@ -88,77 +79,66 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         menuBar = new JMenuBar();
         menu = new JMenu("File");
 
-        item1 = new JMenuItem("save");
-        item1.addActionListener(this);
-        item2 = new JMenuItem("load");
-        item2.addActionListener(this);
+        saveItem = new JMenuItem("save");
+        saveItem.addActionListener(this);
+        loadItem = new JMenuItem("load");
+        loadItem.addActionListener(this);
 
-        menu.add(item1);
-        menu.add(item2);
+        menu.add(saveItem);
+        menu.add(loadItem);
 
         menu.setMnemonic(KeyEvent.VK_A);
         menuBar.add(menu);
-
-        //menu.addActionListener(this);
 
         frame.add(menuBar);
         frame.setJMenuBar(menuBar);
     }
 
 
-    private void addPanel() {
-        //Creating a JPanel for the JFrame
-        panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        //panel.setLayout(new GridLayout());
-        panel.setBorder(BorderFactory.createLineBorder(Color.red));
-        // changing the background color of the panel
-        panel.setBackground(Color.lightGray);
-        panel.setBounds(10,10,(WIDTH / 5) * 3,HEIGHT - 20);
+    private void addPanels() {
+        //Creating a JPanel for the add/remove
+        panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
+        //panel1.setLayout(new GridLayout());
+        panel1.setBorder(br);
+        panel1.setBackground(Color.lightGray);
+        panel1.setBounds(20,20,(WIDTH / 5) * 2,HEIGHT / 5 * 4);
         setButtons();
 
+        //Creating a JPanel for the label with count
         panel2 = new JPanel();
         panel2.setLayout(null);
         panel2.setBorder(br);
         panel2.setBackground(Color.GRAY);
-        panel2.setBounds(320,10,(WIDTH / 5) * 3 - 50,HEIGHT / 8);
+        panel2.setBounds(20, 40 + HEIGHT / 5 * 4,(WIDTH / 5) * 2,HEIGHT / 12);
 
-        //adding a label element to the panel
-//        JLabel label = new JLabel("Accounts");
-//        //label.setSize(90, 25);
-//        //label.setBorder(BorderFactory.createLineBorder(Color.red));
-//        label.setBounds(10,10,100,30);
-//        panel2.add(label);
-
-        countLabel = new JLabel("Total Accounts Saved: " + passwordManager.getCount());
-        countLabel.setMinimumSize(new Dimension(100, 20));
-        countLabel.setBounds(10,20,200,20);
+        //JLabel for the label with count
+        countLabel = new JLabel();
+        updateSentence();
         panel2.add(countLabel);
 
         //adding to the JFrame
-        frame.add(panel);
+        frame.add(panel1);
         frame.add(panel2);
         setTable();
     }
 
-//    private void updateSentence() {
-//        countLabel = new JLabel("Total Accounts Saved: " + passwordManager.getCount());
-//        countLabel.setMinimumSize(new Dimension(100, 20));
-//        countLabel.setBounds(10,20,200,20);
-//        panel2.add(countLabel);
-//    }
+    private void updateSentence() {
+        countLabel.setText("Total Accounts Saved:    " + passwordManager.getCount());
+        countLabel.setFont(new Font("Serif", Font.BOLD, 13));
+        countLabel.setBounds(20,10,200,20);
+    }
 
     private void setButtons() {
         addEntries();
-        button1 = new JButton("ADD");
-        panel.add(button1);
-        button1.addActionListener(this);
 
+        addButton = new JButton("ADD");
+        panel1.add(addButton);
+        addButton.addActionListener(this);
 
-        button2 = new JButton("REMOVE");
-        //removeEntries();
-        panel.add(button2);
-        button2.addActionListener(this);
+        removeButton = new JButton("REMOVE");
+        panel1.add(removeButton);
+        removeButton.addActionListener(this);
 
     }
 
@@ -172,16 +152,16 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
                 "Pass:"};
 
         defaultTableModel = new DefaultTableModel(data, columnNames);
-
         table = new JTable(defaultTableModel);
         table.setBackground(Color.pink);
         table.setBorder(BorderFactory.createLineBorder(Color.red, 2));
         table.setFillsViewportHeight(true);
 
-        JScrollPane pane2 = new JScrollPane(table);
-        pane2.setBounds(320,20 + HEIGHT / 8,(WIDTH / 5) * 3 - 50, HEIGHT / 2 + 160);
-        frame.add(pane2);
+        scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(240,20,(WIDTH / 5) * 3 + 20, HEIGHT - 40);
+        frame.add(scrollPane);
     }
+
 
     private void clearTable() {
         defaultTableModel.setRowCount(0);
@@ -212,37 +192,26 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         t3 = new JTextField(10);
         t3.setFont(new Font("Aerial", Font.BOLD, 20));
 
+        panel1.add(l1);
+        panel1.add(t1);
+        panel1.add(l2);
+        panel1.add(t2);
+        panel1.add(l3);
+        panel1.add(t3);
+
         setNull();
-
-        panel.add(l1);
-        panel.add(t1);
-        panel.add(l2);
-        panel.add(t2);
-        panel.add(l3);
-        panel.add(t3);
-    }
-
-    private void removeEntries() {
-//        l4 = new JLabel("Application Name to remove: ");
-//        t4 = new JTextField(10);
-//        l5 = new JLabel("Username to remove: ");
-//        t5 = new JTextField(10);
-//        panel.add(l4);
-//        panel.add(t4);
-//        panel.add(l5);
-//        panel.add(t5);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button1) {
+        if (e.getSource() == addButton) {
             addPassword();
-        } else if (e.getSource() == button2) {
+        } else if (e.getSource() == removeButton) {
             removePassword();
-        } else if (e.getSource() == item1) {
+        } else if (e.getSource() == saveItem) {
             savePasswordManager();
-        } else if (e.getSource() == item2) {
+        } else if (e.getSource() == loadItem) {
             loadPasswordManager();
         }
     }
@@ -261,9 +230,13 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         } else {
             passwordManager.addAccount(account);
             setNull();
-            System.out.println("\nThis account has been saved to your Password Manager!!!");
             Object[] newRow = {app, u, p};
             defaultTableModel.addRow(newRow);
+
+            JOptionPane.showMessageDialog(null, "Account added!",
+                    "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+
+            updateSentence();
         }
     }
 
@@ -272,17 +245,17 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         String u = t2.getText();
         String p = t3.getText();
         if (passwordManager.getCount() == 0) {
-            System.out.println("You do not have any passwords saved ... ");
             setNull();
             JOptionPane.showMessageDialog(null, "You have 0 passwords saved",
                     "Problem!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (passwordManager.removeAccount(app, u)) {
-                System.out.println("\nThis account has been removed!");
                 setNull();
                 clearTable();
+                JOptionPane.showMessageDialog(null, "Account removed!",
+                        "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+                updateSentence();
             } else {
-                System.out.println("\nThis Password Manager does not contain this account!");
                 setNull();
                 JOptionPane.showMessageDialog(null, "No such account exists",
                         "Problem!", JOptionPane.INFORMATION_MESSAGE);
@@ -290,11 +263,13 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         }
     }
 
+
     private void setNull() {
         t1.setText(null);
         t2.setText(null);
         t3.setText(null);
     }
+
 
     private void savePasswordManager() {
         if (passwordManager.getCount() == 0) {
@@ -319,9 +294,10 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     private void loadPasswordManager() {
         try {
             passwordManager = jsonReader.read();
+            clearTable();
+            updateSentence();
             JOptionPane.showMessageDialog(null, "Loaded Password Manager from " + JSON_STORE,
                     "Congrats!", JOptionPane.INFORMATION_MESSAGE);
-            clearTable();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE,
                     "Problem!", JOptionPane.INFORMATION_MESSAGE);
