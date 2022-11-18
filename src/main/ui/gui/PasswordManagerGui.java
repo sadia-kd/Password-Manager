@@ -329,6 +329,7 @@ public class PasswordManagerGui implements ActionListener {
     }
 
     // Followed to get an idea of how to make buttons work with Action Listener
+    // https://docs.oracle.com/javase/tutorial/uiswing/events/intro.html
     // https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
     //
     @Override
