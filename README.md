@@ -21,23 +21,35 @@ interesting to me as I want to create something useful but simple at the same ti
 project, I want to create something that can be useful to many individuals which is why this was one of the first few
 ideas that came to my mind. 
 
+
+
 ## ***USER STORIES***
-- As a user, I want to be able to add an account to my Password Manager with its password, user & application name
-- As a user, I want to be able to view a list of the applications' names saved in my Password Manager
-- As a user, I want to be able to view the exact details of a chosen account by the application 
-name such as the account and username saved
-- As a user, I want to be able to remove an account saved
-- As a user, I want to be able to change an account's account/username saved
-- As a user, I want to be able to see the total number of passwords saved 
-
-
-
-### Done for Phase1:
 - As a user, I want to be able to add an account to my Password Manager with its password, user & application name
 - As a user, I want to be able to remove an account from my Password Manager
 - As a user, I want to be able to view all the accounts saved in my Password Manager
-- As a user, I want to be able to see the total number of accounts saved 
-
-### Additional User Stories added for Phase2:
+- As a user, I want to be able to see the total number of accounts saved
 - As a user, I want to be able to save the accounts I added to my password manager to file
 - As a user, I want to be able to load my accounts from my password manager saved from file
+
+
+
+## **Instructions for Grader**
+- You can generate the first required event related to adding Xs to a Y by entering an application name in the first
+text field, the username in the next one, and the password in the third text field. Then click 'ADD' below it to add 
+this account to the password manager.
+
+- You can generate the second required event related to removing Xs from a Y by searching an account just by its 
+application name in the 'Application to remove' text field and then the specific username you saved in the 'Username to
+remove' text field. Then click 'REMOVE' to remove this account from the password manager.
+
+- You can see the total accounts present in the password manager by looking at the label at the bottom left side of\
+the frame which updates when you add/remove or load accounts from file.
+
+- You can locate my visual component by seeing it visible on the left side of the frame behind the panel for adding
+and removing an account
+
+- You can save the state of my application by going to 'File' on the top left side of the frame then clicking *'save'*
+in the drop-down menu.
+
+- You can reload the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
+in the drop-down menu.

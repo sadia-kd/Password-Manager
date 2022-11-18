@@ -6,7 +6,6 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // Represents the Password Manager GUI
-public class PasswordManagerGui extends JFrame implements ActionListener {
+public class PasswordManagerGui implements ActionListener {
     private static final String JSON_STORE = "./data/PasswordManagerGUI.json";
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
@@ -60,7 +59,6 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     private ImageIcon imageIcon;
     private JLabel imageLabel;
 
-    private Border br = BorderFactory.createLineBorder(Color.black);
 
     //EFFECTS: Constructs the PasswordManage GUI application
     public PasswordManagerGui() throws FileNotFoundException {
@@ -77,7 +75,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     }
 
 
-    //EFFECTS: Sets up the JFrame with its following characteristics
+    //EFFECTS: Sets up the JFrame with the following characteristics
     private void setUp() {
         frame.setTitle("PASSWORD MANAGER");
         frame.setLayout(null);
@@ -87,17 +85,17 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
 
     }
 
-    // TODO
+
+    //EFFECTS: Adds the visual component to the left side of the frame
     private void setBackground() {
         imageIcon = new ImageIcon("./data/PasswordManager.jpg");
         imageLabel = new JLabel(imageIcon);
-        //imageLabel.setSize(new Dimension(230, 480));
         imageLabel.setBounds(10, 5, 240, HEIGHT - 10);
         frame.add(imageLabel);
     }
 
 
-    //EFFECTS: Sets the menu to add to the JFrame
+    //EFFECTS: Sets the menu and adds it to the JFrame
     private void setMenu() {
         // Build menu bar.
         menuBar = new JMenuBar();
@@ -119,30 +117,30 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
     }
 
 
-    //EFFECTS: Adds the panels to the JFrame
+    //EFFECTS: Adds the panels to the JFrame image background
     private void addPanels() {
         // JPanel for the add/remove labels and text fields
         panel1 = new JPanel();
         panel1.setLayout(new FlowLayout());
-        panel1.setBorder(br);
+        panel1.setBorder(BorderFactory.createLineBorder(Color.black));
         panel1.setBackground(new Color(0, 0, 0, 15));
         panel1.setBounds(20, 35, (WIDTH / 5) * 2, HEIGHT / 5 * 3 + 90);
         // Add Buttons to the panel1
         setButtons();
 
+
         // JPanel for the label with count
         panel2 = new JPanel();
         panel2.setLayout(null);
-        panel2.setBorder(br);
+        panel2.setBorder(BorderFactory.createLineBorder(Color.black));
         panel2.setBackground(Color.lightGray);
-        //panel2.setBackground(new Color(0, 0, 0, 15));
         panel2.setBounds(55,HEIGHT - 52, (WIDTH / 5) * 2 - 55, HEIGHT / 15);
         // JLabel for the label with count
         countLabel = new JLabel();
         updateSentence();
         panel2.add(countLabel);
 
-        // Adding both panels to the JFrame
+        // Adding both panels to the image background
         imageLabel.add(panel1);
         imageLabel.add(panel2);
 
@@ -174,12 +172,14 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         removePanel.setBackground(Color.lightGray);
         panel1.add(Box.createRigidArea(new Dimension(0, 30)));
         panel1.add(removePanel);
-        // add button added to its panel
+
+        // add 'ADD' button to its panel
         addButton = new JButton("ADD");
         addPanel.add(addButton);
-        // remove button added to its panel
+        // add 'REMOVE' button to its panel
         removeButton = new JButton("REMOVE");
         removePanel.add(removeButton);
+
         // ActionListener added to both buttons
         addButton.addActionListener(this);
         removeButton.addActionListener(this);
@@ -201,6 +201,9 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         table.setBackground(Color.pink);
         table.setBorder(BorderFactory.createLineBorder(Color.red, 1));
         table.setFillsViewportHeight(true);
+
+        table.setRowSelectionAllowed(false);
+        table.setColumnSelectionAllowed(false);
 
         scrollPane = new JScrollPane(table);
         scrollPane.setBounds(260, 5, (WIDTH / 5) * 3 + 5, HEIGHT - 10);
@@ -263,6 +266,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         t5.setFont(new Font("Aerial", Font.BOLD, 10));
 
         panel1.add(l4);
+        panel1.add(Box.createRigidArea(new Dimension(0, 30)));
         panel1.add(t4);
         panel1.add(Box.createRigidArea(new Dimension(0, 30)));
         panel1.add(l5);
@@ -301,22 +305,22 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
 
         if (app.isEmpty() || u.isEmpty() || p.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter a valid string!",
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
             setNullAdd();
         } else if (passwordManager.containsAccount(app, u)) {
             JOptionPane.showMessageDialog(null, "An account like this already exists!",
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
             setNullAdd();
         } else {
             passwordManager.addAccount(account);
             setNullAdd();
             Object[] newRow = {app, u, p};
             defaultTableModel.addRow(newRow);
+            updateSentence();
 
             JOptionPane.showMessageDialog(null, "Account added!",
                     "Congrats!", JOptionPane.INFORMATION_MESSAGE);
 
-            updateSentence();
         }
     }
 
@@ -330,11 +334,11 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
         if (app.isEmpty() || u.isEmpty()) {
             setNullRemove();
             JOptionPane.showMessageDialog(null, "Please enter a valid string!",
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
         } else if (passwordManager.getCount() == 0) {
             setNullRemove();
             JOptionPane.showMessageDialog(null, "You have 0 passwords saved",
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
         } else {
             if (passwordManager.removeAccount(app, u)) {
                 setNullRemove();
@@ -378,7 +382,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
 
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Unable to write to file: " + JSON_STORE,
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -395,7 +399,7 @@ public class PasswordManagerGui extends JFrame implements ActionListener {
                     "Congrats!", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE,
-                    "Problem!", JOptionPane.INFORMATION_MESSAGE);
+                    "Problem!", JOptionPane.WARNING_MESSAGE);
         }
     }
 
