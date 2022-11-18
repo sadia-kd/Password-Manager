@@ -51,5 +51,5 @@ and removing an account
 - You can save the state of my application by going to 'File' on the top left side of the frame then clicking *'save'*
 in the drop-down menu.
 
-- You can reload the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
+- You can load the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
 in the drop-down menu.

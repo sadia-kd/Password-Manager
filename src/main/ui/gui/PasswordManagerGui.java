@@ -89,6 +89,9 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    // Followed the idea in this to set a background picture to half the JFrame
+    // https://java-demos.blogspot.com/2012/09/setting-background-image-in-jframe.html
+    //
     //EFFECTS: Adds the visual component to the left side of the frame
     private void setBackground() {
         imageIcon = new ImageIcon("./data/PasswordManager.jpg");
@@ -167,7 +170,9 @@ public class PasswordManagerGui implements ActionListener {
         countLabel.setBounds(10, 10, 200, 10);
     }
 
+
     /*
+    Looked at to see how buttons can be added to a JFrame:
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
     */
     //EFFECTS: adds the ADD and REMOVE panels to panel1 with the buttons
@@ -201,7 +206,7 @@ public class PasswordManagerGui implements ActionListener {
 
 
     /*
-    Followed this to make Table for accounts’s details:
+    Followed this to make Table with all accounts’ details:
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/SimpleTableSelectionDemoProject/src/
     components/SimpleTableSelectionDemo.java
      */
@@ -243,11 +248,13 @@ public class PasswordManagerGui implements ActionListener {
         }
     }
 
+
     /*
     Labels:
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
     TextFields:
-
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextFieldDemoProject/src/
+    components/TextFieldDemo.java
     */
     //EFFECTS: Adds the ADD Labels and TextFields to panel1
     private void addEntries() {
@@ -276,10 +283,13 @@ public class PasswordManagerGui implements ActionListener {
         setNullAdd();
     }
 
+
     /*
     Labels:
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
     TextFields:
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextFieldDemoProject/src/
+    components/TextFieldDemo.java
 
     */
     //EFFECTS: Adds the REMOVE Labels and TextFields to panel1
@@ -318,8 +328,9 @@ public class PasswordManagerGui implements ActionListener {
         t5.setText(null);
     }
 
-
+    // Followed to get an idea of how to make buttons work
     // https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
+    //
     @Override
     // MODIFIES: this
     // EFFECTS: processes the button/menu that the user clicks
@@ -341,9 +352,7 @@ public class PasswordManagerGui implements ActionListener {
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/
     DialogDemoProject/src/components/CustomDialog.java
 
-    - Used in addPassword(), removePassword(), savePasswordManager(), and
-     loadPasswordManager()
-
+    - Used in addPassword(), removePassword(), savePasswordManager(), and loadPasswordManager()
      */
 
     // MODIFIES: this
