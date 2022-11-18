@@ -74,6 +74,7 @@ public class PasswordManagerGui implements ActionListener {
     }
 
     /*
+    Followed this to see how to start with a JFrame.
      https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing
      /examples/components/FrameDemoProject/src/components/FrameDemo.java
     */
@@ -142,7 +143,6 @@ public class PasswordManagerGui implements ActionListener {
         panel1.setBounds(20, 35, (WIDTH / 5) * 2, HEIGHT / 5 * 3 + 90);
         // Add Buttons to the panel1
         setButtons();
-
 
         // JPanel for the label with count
         panel2 = new JPanel();
@@ -328,7 +328,7 @@ public class PasswordManagerGui implements ActionListener {
         t5.setText(null);
     }
 
-    // Followed to get an idea of how to make buttons work
+    // Followed to get an idea of how to make buttons work with Action Listener
     // https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
     //
     @Override

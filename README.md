@@ -45,8 +45,8 @@ remove' text field. Then click 'REMOVE' to remove this account from the password
 - You can see the total accounts present in the password manager by looking at the label at the bottom left side of\
 the frame which updates when you add/remove or load accounts from file.
 
-- You can locate my visual component by seeing it visible on the left side of the frame behind the panel for adding
-and removing an account
+- You can locate my visual component by seeing it visible on the left side of the frame when the GUI is run,
+behind the panel for adding and removing an account. It is saved in the ./data folder of my project.
 
 - You can save the state of my application by going to 'File' on the top left side of the frame then clicking *'save'*
 in the drop-down menu.
