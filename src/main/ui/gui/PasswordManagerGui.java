@@ -66,7 +66,6 @@ public class PasswordManagerGui implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        frame = new JFrame();
         setUp();
         setBackground();
         setMenu();
@@ -74,9 +73,13 @@ public class PasswordManagerGui implements ActionListener {
         frame.setVisible(true);
     }
 
-
+    /*
+     https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing
+     /examples/components/FrameDemoProject/src/components/FrameDemo.java
+    */
     //EFFECTS: Sets up the JFrame with the following characteristics
     private void setUp() {
+        frame = new JFrame();
         frame.setTitle("PASSWORD MANAGER");
         frame.setLayout(null);
         frame.setBounds(0, 0, WIDTH + 90, HEIGHT + 60);
@@ -95,6 +98,10 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    /*
+    Followed this to set my save and load menu items
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/MenuDemoProject/src/components/MenuDemo.java
+     */
     //EFFECTS: Sets the menu and adds it to the JFrame
     private void setMenu() {
         // Build menu bar.
@@ -116,7 +123,12 @@ public class PasswordManagerGui implements ActionListener {
         frame.setJMenuBar(menuBar);
     }
 
-
+    /*
+    Adding panels:
+    https://stackoverflow.com/questions/70630664/putting-panels-in-a-big-panel
+    Setting Panel to a transparent colour:
+    https://java-demos.blogspot.com/2013/09/creating-transparent-jpanel-in-swing.html
+     */
     //EFFECTS: Adds the panels to the JFrame image background
     private void addPanels() {
         // JPanel for the add/remove labels and text fields
@@ -155,7 +167,9 @@ public class PasswordManagerGui implements ActionListener {
         countLabel.setBounds(10, 10, 200, 10);
     }
 
-
+    /*
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
+    */
     //EFFECTS: adds the ADD and REMOVE panels to panel1 with the buttons
     private void setButtons() {
         // add l1-l3, t1-t3
@@ -186,6 +200,11 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    /*
+    Followed this to make Table for accounts’s details:
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/SimpleTableSelectionDemoProject/src/
+    components/SimpleTableSelectionDemo.java
+     */
     //EFFECTS: Creates the table that will show the Accounts details and is added to JFrame
     private void setTable() {
         Object[][] data = {
@@ -224,7 +243,12 @@ public class PasswordManagerGui implements ActionListener {
         }
     }
 
+    /*
+    Labels:
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
+    TextFields:
 
+    */
     //EFFECTS: Adds the ADD Labels and TextFields to panel1
     private void addEntries() {
         l1 = new JLabel("Application: ");
@@ -252,7 +276,12 @@ public class PasswordManagerGui implements ActionListener {
         setNullAdd();
     }
 
+    /*
+    Labels:
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
+    TextFields:
 
+    */
     //EFFECTS: Adds the REMOVE Labels and TextFields to panel1
     private void removeEntries() {
         l4 = new JLabel("Application to remove: ");
@@ -276,6 +305,21 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    //EFFECTS: sets the ADD text fields to null
+    private void setNullAdd() {
+        t1.setText(null);
+        t2.setText(null);
+        t3.setText(null);
+    }
+
+    //EFFECTS: sets the REMOVE text fields to null
+    private void setNullRemove() {
+        t4.setText(null);
+        t5.setText(null);
+    }
+
+
+    // https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
     @Override
     // MODIFIES: this
     // EFFECTS: processes the button/menu that the user clicks
@@ -291,6 +335,16 @@ public class PasswordManagerGui implements ActionListener {
         }
     }
 
+
+    /*
+    For Pop-Up Dialog Messages:
+    https://docs.oracle.com/javase/tutorial/uiswing/examples/components/
+    DialogDemoProject/src/components/CustomDialog.java
+
+    - Used in addPassword(), removePassword(), savePasswordManager(), and
+     loadPasswordManager()
+
+     */
 
     // MODIFIES: this
     // EFFECTS: Gets texts from textFields and adds password only if it doesn't already contain an account for a
@@ -355,20 +409,6 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
-    //EFFECTS: sets the ADD text fields to null
-    private void setNullAdd() {
-        t1.setText(null);
-        t2.setText(null);
-        t3.setText(null);
-    }
-
-    //EFFECTS: sets the REMOVE text fields to null
-    private void setNullRemove() {
-        t4.setText(null);
-        t5.setText(null);
-    }
-
-
     //EFFECTS: saves the Password Manager to file,
     //         or throws FileNotFoundException if unable to save.
     private void savePasswordManager() {
@@ -377,7 +417,7 @@ public class PasswordManagerGui implements ActionListener {
             jsonWriter.write(passwordManager);
             jsonWriter.close();
 
-            JOptionPane.showMessageDialog(null, "Saved!",
+            JOptionPane.showMessageDialog(null, "Saved Password Manager to: " + JSON_STORE,
                     "Congrats!", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (FileNotFoundException e) {
