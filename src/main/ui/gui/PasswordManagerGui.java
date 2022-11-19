@@ -163,6 +163,7 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    //MODIFIES: this
     //EFFECTS: updates the label whenever account is added/removed/loaded from file.
     private void updateSentence() {
         countLabel.setText("Total Accounts Saved: " + passwordManager.getCount());
@@ -184,7 +185,7 @@ public class PasswordManagerGui implements ActionListener {
         addPanel.setBackground(Color.lightGray);
         panel1.add(Box.createRigidArea(new Dimension(0, 30)));
         panel1.add(addPanel);
-        // add l4-l4, t4-t5
+        // add l4-l5, t4-t5
         removeEntries();
         // add the REMOVE button panel
         removePanel = new JPanel();
@@ -223,7 +224,6 @@ public class PasswordManagerGui implements ActionListener {
         defaultTableModel = new DefaultTableModel(data, columnNames);
         table = new JTable(defaultTableModel);
         table.setBackground(Color.pink);
-        table.setBorder(BorderFactory.createLineBorder(Color.red, 1));
         table.setFillsViewportHeight(true);
 
         table.setRowSelectionAllowed(false);
@@ -235,6 +235,7 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    //MODIFIES: this
     //EFFECTS: Clears the table to 0 and re-adds the Accounts details from the passwordManager
     private void clearAndReloadTable() {
         defaultTableModel.setRowCount(0);
@@ -256,6 +257,7 @@ public class PasswordManagerGui implements ActionListener {
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextFieldDemoProject/src/
     components/TextFieldDemo.java
     */
+    //
     //EFFECTS: Adds the ADD Labels and TextFields to panel1
     private void addEntries() {
         l1 = new JLabel("Application: ");
@@ -290,8 +292,8 @@ public class PasswordManagerGui implements ActionListener {
     TextFields:
     https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextFieldDemoProject/src/
     components/TextFieldDemo.java
-
     */
+    //
     //EFFECTS: Adds the REMOVE Labels and TextFields to panel1
     private void removeEntries() {
         l4 = new JLabel("Application to remove: ");
@@ -327,6 +329,7 @@ public class PasswordManagerGui implements ActionListener {
         t4.setText(null);
         t5.setText(null);
     }
+
 
     // Followed to get an idea of how to make buttons work with Action Listener
     // https://docs.oracle.com/javase/tutorial/uiswing/events/intro.html

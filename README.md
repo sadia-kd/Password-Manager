@@ -34,15 +34,16 @@ ideas that came to my mind.
 
 
 ## **Instructions for Grader**
-- You can generate the first required event related to adding Xs to a Y by entering an application name in the first
-text field, the username in the next one, and the password in the third text field. Then click 'ADD' below it to add 
-this account to the password manager.
+- You can generate the first required event related to adding Accounts (Xs) to the Password Manager (Y) by entering an 
+application name in the first text field, the username in the second one, and the password in the third text field. 
+Then click 'ADD' below it to add this account to the password manager.
 
-- You can generate the second required event related to removing Xs from a Y by searching an account just by its 
-application name in the 'Application to remove' text field and then the specific username you saved in the 'Username to
-remove' text field. Then click 'REMOVE' to remove this account from the password manager.
+- You can generate the second required event related to removing an Account (X) from the Password Manager (Y) by 
+searching an account just by its application name in the 'Application to remove' text field and then the specific 
+username you saved in the 'Username to remove' text field. Then click 'REMOVE' to remove this account from the
+password manager.
 
-- You can see the total accounts present in the password manager by looking at the label at the bottom left side of\
+- You can see the total accounts present in the password manager by looking at the label at the bottom left side of 
 the frame which updates when you add/remove or load accounts from file.
 
 - You can locate my visual component by seeing it visible on the left side of the frame when the GUI is run,
