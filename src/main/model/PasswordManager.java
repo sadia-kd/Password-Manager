@@ -22,6 +22,9 @@ public class PasswordManager implements Writable {
     //MODIFIES: this
     //EFFECTS: adds an Account to accounts
     public void addAccount(Account account) {
+        EventLog.getInstance().logEvent(new Event("Account Details for "
+                + account.getApplicationName() + " have been added!\n"));
+
         accounts.add(account);
     }
 
@@ -46,6 +49,9 @@ public class PasswordManager implements Writable {
     public boolean removeAccount(String app, String u) {
         for (Account a : accounts) {
             if ((Objects.equals(a.getApplicationName(), app)) && (Objects.equals(a.getUsername(), u))) {
+
+                EventLog.getInstance().logEvent(new Event("Account for " + app + " has been removed!\n"));
+
                 accounts.remove(a);
                 return true;
             }

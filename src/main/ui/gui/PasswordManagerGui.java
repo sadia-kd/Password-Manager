@@ -1,6 +1,8 @@
 package ui.gui;
 
 import model.Account;
+import model.Event;
+import model.EventLog;
 import model.PasswordManager;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -8,9 +10,7 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -84,7 +84,20 @@ public class PasswordManagerGui implements ActionListener {
         frame.setTitle("PASSWORD MANAGER");
         frame.setLayout(null);
         frame.setBounds(0, 0, WIDTH + 90, HEIGHT + 60);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printEvents(EventLog.getInstance());
+                System.exit(0);
+            }
+
+        });
+
         frame.setLocationRelativeTo(null);
 
     }
@@ -274,6 +287,7 @@ public class PasswordManagerGui implements ActionListener {
         l3.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 12));
         t3 = new JTextField(13);
         t3.setFont(new Font("Aerial", Font.BOLD, 12));
+        t3.setForeground(new Color(0, 0, 0, 0));
 
         panel1.add(l1);
         panel1.add(t1);
@@ -348,6 +362,11 @@ public class PasswordManagerGui implements ActionListener {
         } else if (e.getSource() == loadItem) {
             loadPasswordManager();
         }
+//        else {
+//            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSED));
+//            printEvents(EventLog.getInstance());
+//            System.exit(0);
+//        }
     }
 
 
@@ -454,6 +473,14 @@ public class PasswordManagerGui implements ActionListener {
             JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE,
                     "Problem!", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+
+    private void printEvents(EventLog eventLog) {
+        for (Event event : eventLog) {
+            System.out.println(event.toString());
+        }
+
     }
 
 }
