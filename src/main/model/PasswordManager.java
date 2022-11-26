@@ -22,8 +22,8 @@ public class PasswordManager implements Writable {
     //MODIFIES: this
     //EFFECTS: adds an Account to accounts
     public void addAccount(Account account) {
-        EventLog.getInstance().logEvent(new Event("Account Details for "
-                + account.getApplicationName() + " have been added!\n"));
+        EventLog.getInstance().logEvent(new Event("Account for "
+                + account.getApplicationName() + " has been added!\n"));
 
         accounts.add(account);
     }

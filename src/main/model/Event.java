@@ -3,9 +3,8 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Represents a Password Manager Event.
- */
+
+// Represents an Event.
 public class Event {
     private static final int HASH_CONSTANT = 13;
     private Date dateLogged;

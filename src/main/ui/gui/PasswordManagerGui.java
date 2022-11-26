@@ -59,6 +59,7 @@ public class PasswordManagerGui implements ActionListener {
     private ImageIcon imageIcon;
     private JLabel imageLabel;
 
+    private JCheckBox checkBox;
 
     //EFFECTS: Constructs the PasswordManage GUI application
     public PasswordManagerGui() throws FileNotFoundException {
@@ -77,29 +78,25 @@ public class PasswordManagerGui implements ActionListener {
     Followed this to see how to start with a JFrame.
      https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing
      /examples/components/FrameDemoProject/src/components/FrameDemo.java
+    Followed this for adding Window Listener
+     https://stackoverflow.com/questions/60516720/java-how-to-print-message-when-a-jframe-is-closed
     */
+    //
     //EFFECTS: Sets up the JFrame with the following characteristics
     private void setUp() {
         frame = new JFrame();
         frame.setTitle("PASSWORD MANAGER");
         frame.setLayout(null);
         frame.setBounds(0, 0, WIDTH + 90, HEIGHT + 60);
-
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
         frame.addWindowListener(new WindowAdapter() {
-
             @Override
             public void windowClosing(WindowEvent e) {
                 printEvents(EventLog.getInstance());
                 System.exit(0);
             }
-
         });
-
         frame.setLocationRelativeTo(null);
-
     }
 
 
@@ -146,6 +143,7 @@ public class PasswordManagerGui implements ActionListener {
     Setting Panel to a transparent colour:
     https://java-demos.blogspot.com/2013/09/creating-transparent-jpanel-in-swing.html
      */
+    //
     //EFFECTS: Adds the panels to the JFrame image background
     private void addPanels() {
         // JPanel for the add/remove labels and text fields
@@ -153,7 +151,7 @@ public class PasswordManagerGui implements ActionListener {
         panel1.setLayout(new FlowLayout());
         panel1.setBorder(BorderFactory.createLineBorder(Color.black));
         panel1.setBackground(new Color(0, 0, 0, 15));
-        panel1.setBounds(20, 35, (WIDTH / 5) * 2, HEIGHT / 5 * 3 + 90);
+        panel1.setBounds(18, 35, (WIDTH / 5) * 2 + 2, HEIGHT / 5 * 3 + 90);
         // Add Buttons to the panel1
         setButtons();
 
@@ -209,6 +207,14 @@ public class PasswordManagerGui implements ActionListener {
         // add 'ADD' button to its panel
         addButton = new JButton("ADD");
         addPanel.add(addButton);
+
+        // add CHECKBOX to the 'add' panel
+        checkBox = new JCheckBox("Show Password");
+        checkBox.setSelected(false);
+        t3.setForeground(new Color(0, 0, 0, 0));
+        checkBox.addActionListener(this);
+        addPanel.add(checkBox);
+
         // add 'REMOVE' button to its panel
         removeButton = new JButton("REMOVE");
         removePanel.add(removeButton);
@@ -287,7 +293,6 @@ public class PasswordManagerGui implements ActionListener {
         l3.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 12));
         t3 = new JTextField(13);
         t3.setFont(new Font("Aerial", Font.BOLD, 12));
-        t3.setForeground(new Color(0, 0, 0, 0));
 
         panel1.add(l1);
         panel1.add(t1);
@@ -361,12 +366,13 @@ public class PasswordManagerGui implements ActionListener {
             savePasswordManager();
         } else if (e.getSource() == loadItem) {
             loadPasswordManager();
+        } else if (checkBox.isSelected()) {
+            showPass();
+        } else if (!checkBox.isSelected()) {
+            hidePass();
+
         }
-//        else {
-//            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSED));
-//            printEvents(EventLog.getInstance());
-//            System.exit(0);
-//        }
+
     }
 
 
@@ -377,6 +383,7 @@ public class PasswordManagerGui implements ActionListener {
 
     - Used in addPassword(), removePassword(), savePasswordManager(), and loadPasswordManager()
      */
+
 
     // MODIFIES: this
     // EFFECTS: Gets texts from textFields and adds password only if it doesn't already contain an account for a
@@ -476,11 +483,22 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
+    //EFFECTS: prints the log to console when Password Manager is exited
     private void printEvents(EventLog eventLog) {
         for (Event event : eventLog) {
             System.out.println(event.toString());
         }
+    }
 
+
+    //EFFECTS: Hides the password text field when check box is not selected
+    private void hidePass() {
+        t3.setForeground(new Color(0, 0, 0, 0));
+    }
+
+    //EFFECTS: Shows the password text field when check box is selected
+    private void showPass() {
+        t3.setForeground(Color.black);
     }
 
 }

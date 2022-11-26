@@ -54,3 +54,34 @@ in the drop-down menu.
 
 - You can load the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
 in the drop-down menu.
+
+## **Phase 4: Task 2**
+- When the Password Manager is run, the following is how the events of adding and removing a password is logged 
+
+Sat Nov 26 14:28:47 PST 2022
+
+Account for Instagram has been added!
+
+Sat Nov 26 14:29:09 PST 2022
+
+Account for Snapchat has been added!
+
+Sat Nov 26 14:29:21 PST 2022
+
+Account for SSC has been added!
+
+Sat Nov 26 14:29:38 PST 2022
+
+Account for Canvas has been added!
+
+Sat Nov 26 14:35:24 PST 2022
+
+Account for Twitter has been added!
+
+Sat Nov 26 14:35:38 PST 2022
+
+Account for Snapchat has been removed!
+
+Sat Nov 26 14:35:49 PST 2022
+
+Account for SSC has been removed!
