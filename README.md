@@ -85,3 +85,11 @@ Account for Snapchat has been removed!
 Sat Nov 26 14:35:49 PST 2022
 
 Account for SSC has been removed!
+
+
+- The log also prints the following when a file is loaded. This occurs as even though those accounts were already added,
+they get logged as being newly added accounts.
+
+## **Phase 4: Task 3**
+- If I had more time, I would definitely refactor my PasswordManagerGui class so that it follows the 
+single responsibility principle and to increase cohesion
