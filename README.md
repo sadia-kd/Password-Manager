@@ -55,8 +55,11 @@ in the drop-down menu.
 - You can load the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
 in the drop-down menu.
 
+
+
 ## **Phase 4: Task 2**
-- When the Password Manager is run, the following is how the events of adding and removing a password is logged 
+- When the Password Manager GUI is run, the following is an example of how the events of adding and removing a password
+are logged:
 
 Sat Nov 26 14:28:47 PST 2022
 
@@ -74,10 +77,6 @@ Sat Nov 26 14:29:38 PST 2022
 
 Account for Canvas has been added!
 
-Sat Nov 26 14:35:24 PST 2022
-
-Account for Twitter has been added!
-
 Sat Nov 26 14:35:38 PST 2022
 
 Account for Snapchat has been removed!
@@ -86,20 +85,25 @@ Sat Nov 26 14:35:49 PST 2022
 
 Account for SSC has been removed!
 
+- The log also prints the following when a file is loaded right when the GUI is run. This occurs as even though those
+accounts were already added, they get logged as being newly added accounts because eventually
+addAccount(Account account) is being called from gui through json reader again.
 
-- The log also prints the following when a file is loaded. This occurs as even though those accounts were already added,
-they get logged as being newly added accounts because eventually addAccount(Account account) is being called from gui 
-through json reader.
 
 ## **Phase 4: Task 3**
 - If I had more time, I would definitely refactor my PasswordManagerGui class so that it follows the 
-single responsibility principle and to increase cohesion. 
-- For example:
-- I would make separate classes for each idea such as the table I add to my frame
-- A class for the small Count label
-- A class for the 
+single responsibility principle and to increase cohesion in my project.
+
+For example, I would:
+- make separate classes for each idea such as the table that I add to my frame
+- make separate class which creates the Adding/Removing passwords Label and Text Fields
+- make a class for the Count label
+- make a class for creating the menu bar with load and save options
+By doing so, this will increase cohesion and will also improve the readability of my code as everything will be
+separated into smaller classes and not what I currently have which is one class holding everything.
 
 
-- I would also remove the association in the PasswordManagerGui class with the Account class because there is no point 
-of having a private field for it and then not even instantiating it in the constructor. I could just create a local 
-variable instead.
+- Looking at my UML Design Diagram, I would also remove the association in the PasswordManagerGui class with the 
+Account class that I added because there is no point of having a field for it and accessible to other methods to when 
+it does not need to. It is also not even instantiated in the constructor and is only used in the addPassword() method.
+What I would do instead now is to just create a local variable. 
