@@ -99,8 +99,11 @@ For example, I would:
 - make separate class which creates the Adding/Removing passwords Label and Text Fields
 - make a class for the Count label
 - make a class for creating the menu bar with load and save options
-By doing so, this will increase cohesion and will also improve the readability of my code as everything will be
-separated into smaller classes and not what I currently have which is one class holding everything.
+By doing so, this will increase cohesion as there will be more classes and each for a single responsibility.
+This will improve the readability of my code as everything will be separated into smaller classes and not what 
+I currently have which is one class holding everything. Increasing cohesion will make it easier to locate code
+related to something if a problem occurs in my program. In addition, some of my functionality was similar to my 
+original console application, so making separate classes for that would have helped to re-use code.
 
 
 Looking at my UML Design Diagram, I would also remove the association in the PasswordManagerGui class with the 
