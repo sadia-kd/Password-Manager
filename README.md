@@ -103,7 +103,9 @@ By doing so, this will increase cohesion and will also improve the readability o
 separated into smaller classes and not what I currently have which is one class holding everything.
 
 
-- Looking at my UML Design Diagram, I would also remove the association in the PasswordManagerGui class with the 
-Account class that I added because there is no point of having a field for it and accessible to other methods to when 
-it does not need to. It is also not even instantiated in the constructor and is only used in the addPassword() method.
-What I would do instead now is to just create a local variable. 
+Looking at my UML Design Diagram, I would also remove the association in the PasswordManagerGui class with the 
+Account class that I added because there is no point of having a field for it that is accessible to other methods 
+to when it does not need to. It is also not even instantiated in the constructor and is only used in the addPassword()
+method. What I would do instead now is to just create a local variable. This way, no other method can access it. 
+It also was not a correct way to use it since I added a field for Password Manager, so even through the local variable, 
+an account can be added to it. 
