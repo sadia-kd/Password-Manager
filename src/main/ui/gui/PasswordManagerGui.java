@@ -47,7 +47,9 @@ public class PasswordManagerGui implements ActionListener {
     private JLabel l3;
     private JTextField t1;
     private JTextField t2;
-    private JTextField t3;
+
+    private JPasswordField t3;
+
     private JLabel l4;
     private JLabel l5;
     private JTextField t4;
@@ -211,7 +213,6 @@ public class PasswordManagerGui implements ActionListener {
         // add CHECKBOX to the 'add' panel
         checkBox = new JCheckBox("Show Password");
         checkBox.setSelected(false);
-        t3.setForeground(new Color(0, 0, 0, 0));
         checkBox.addActionListener(this);
         addPanel.add(checkBox);
 
@@ -291,7 +292,7 @@ public class PasswordManagerGui implements ActionListener {
 
         l3 = new JLabel("Password: ");
         l3.setFont(new Font("Aerial", Font.BOLD + Font.ITALIC, 12));
-        t3 = new JTextField(13);
+        t3 = new JPasswordField(13);
         t3.setFont(new Font("Aerial", Font.BOLD, 12));
 
         panel1.add(l1);
@@ -491,14 +492,19 @@ public class PasswordManagerGui implements ActionListener {
     }
 
 
-    //EFFECTS: Hides the password text field when check box is not selected
+    /*
+    https://stackoverflow.com/questions/19755259/hide-show-password-in-a-jtextfield-java-swing
+    #:~:text=Use%20jPasswordField1.,behavior%20of%20a%20standard%20JTextField%20.
+     */
+    //EFFECTS: Hides the password text field when check box is not selected as *
     private void hidePass() {
-        t3.setForeground(new Color(0, 0, 0, 0));
+        t3.setEchoChar('*');
     }
 
     //EFFECTS: Shows the password text field when check box is selected
     private void showPass() {
-        t3.setForeground(Color.black);
+        t3.setEchoChar((char)0);
     }
+
 
 }

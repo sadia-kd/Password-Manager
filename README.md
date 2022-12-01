@@ -88,8 +88,18 @@ Account for SSC has been removed!
 
 
 - The log also prints the following when a file is loaded. This occurs as even though those accounts were already added,
-they get logged as being newly added accounts.
+they get logged as being newly added accounts because eventually addAccount(Account account) is being called from gui 
+through json reader.
 
 ## **Phase 4: Task 3**
 - If I had more time, I would definitely refactor my PasswordManagerGui class so that it follows the 
-single responsibility principle and to increase cohesion
+single responsibility principle and to increase cohesion. 
+- For example:
+- I would make separate classes for each idea such as the table I add to my frame
+- A class for the small Count label
+- A class for the 
+
+
+- I would also remove the association in the PasswordManagerGui class with the Account class because there is no point 
+of having a private field for it and then not even instantiating it in the constructor. I could just create a local 
+variable instead.
