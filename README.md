@@ -85,14 +85,14 @@ Sat Nov 26 14:35:49 PST 2022
 
 Account for SSC has been removed!
 
-- The log also prints the following when a file is loaded right when the GUI is run. This occurs as even though those
-accounts were already added, they get logged as being newly added accounts because eventually
-addAccount(Account account) is being called from gui through json reader again.
+- The log also prints in the same way when a file is loaded with accounts already saved in the Password Manager. 
+This occurs as even though those accounts were already added, they get logged as being newly added accounts because 
+eventually the method, addAccount(Account account), is being called from gui through json reader again.
 
 
 ## **Phase 4: Task 3**
-- If I had more time, I would definitely refactor my PasswordManagerGui class so that it follows the 
-single responsibility principle and to increase cohesion in my project.
+- If I had more time, I would definitely refactor my project, specifically the PasswordManagerGui class, so that it 
+follows the single responsibility principle and to increase cohesion in it.
 
 For example, I would:
 - make separate classes for each idea such as the table that I add to my frame
@@ -106,9 +106,9 @@ related to something if a problem occurs in my program. In addition, some of my 
 original console application, so making separate classes for that would have helped to re-use code.
 
 
-Looking at my UML Design Diagram, I would also remove the association in the PasswordManagerGui class with the 
-Account class that I added because there is no point of having a field for it that is accessible to other methods 
-to when it does not need to. It is also not even instantiated in the constructor and is only used in the addPassword()
-method. What I would do instead now is to just create a local variable. This way, no other method can access it. 
-It also was not a correct way to use it since I added a field for Password Manager, so even through the local variable, 
-an account can be added to it. 
+Looking at my UML Design Diagram, in order to achieve low coupling, I would remove the association in the
+PasswordManagerGui class with the Account class that I added because there is no point of having a field for it that is
+accessible to other methods too when it does not need to. It does not get instantiated in the constructor and is 
+only used in the addPassword() method. What I would do instead now is to just create a local variable in the method.
+This way, no other method can access it. It also was not a correct way to have a field since I also added a field for
+Password Manager, thus, even through the local variable, an account can be added to it. 
