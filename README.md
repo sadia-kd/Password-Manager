@@ -1,13 +1,11 @@
-# CPSC 210 Personal Project:
-
+# Personal Project:
 ## ***Password Manager***
 
 ### **What will the application do?**
-For my CPSC 210 project, I want to create an application that will allow a user to save multiple passwords for the 
-different accounts they have to a place when it gets difficult to remember all passwords by memory. This application
-will be able to store the name of the application of what the account is for along with the username of it. 
-An application like this is useful as all your passwords will be kept in one spot. The user will have abilities to view 
-all the different account information they have saved.
+This application will allow a user to save multiple passwords for the different accounts they have to a place when it 
+gets difficult to remember all passwords by memory. This application will be able to store the name of the application 
+of what the account is for along with the username of it. An application like this is useful as all your passwords will 
+be kept in one spot. The user will have abilities to view all the different account information they have saved.
 
 ### **Who will use it?**
 This Password Managing application can be used by anyone. If an individual has too many passwords to keep track of, 
@@ -22,7 +20,6 @@ project, I want to create something that can be useful to many individuals which
 ideas that came to my mind. 
 
 
-
 ## ***USER STORIES***
 - As a user, I want to be able to add an account to my Password Manager with its password, user & application name
 - As a user, I want to be able to remove an account from my Password Manager
@@ -32,8 +29,7 @@ ideas that came to my mind.
 - As a user, I want to be able to load my accounts from my password manager saved from file
 
 
-
-## **Instructions for Grader**
+## **About the application:**
 - You can generate the first required event related to adding Accounts (Xs) to the Password Manager (Y) by entering an 
 application name in the first text field, the username in the second one, and the password in the third text field. 
 Then click 'ADD' below it to add this account to the password manager.
@@ -55,8 +51,7 @@ in the drop-down menu.
 - You can load the state of my application by going to 'File' on the top left side of the frame then clicking *'load'*
 in the drop-down menu.
 
-
-
+  
 ## **Phase 4: Task 2**
 - When the Password Manager GUI is run, the following is an example of how the events of adding and removing a password
 are logged:
