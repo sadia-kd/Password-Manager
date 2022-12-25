@@ -1,5 +1,6 @@
 # Personal Project:
-## ***Password Manager***
+## ***Password Manager*** 
+
 
 ### **What will the application do?**
 This application will allow a user to save multiple passwords for the different accounts they have to a place when it 
